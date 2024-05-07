@@ -1,17 +1,9 @@
-import React, { useEffect } from 'react';
-import './Login.css'
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import './Signup.css'
 import { useNavigate } from 'react-router-dom';
 import {axiosRequest} from '../../../Utils/axiosRequest.js';
-import { useDispatch, useSelector } from 'react-redux';
-//import {storeUser} from '../../Redux/loginSlice.js'
 
-
-
-const Login = ({setIsAuthenticated,isAuthenticated}) => {
-
-    //const userDetails = useSelector(state => state.userDetails)
-    //const dispatch = useDispatch()
+const SignUp = () => {
     const navigate = useNavigate()
     const [successMessage,setSuccessMessage]  = useState()
     const [errorMessage,setErrorMessage] = useState()
@@ -22,52 +14,52 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
     })
 
     let getValue = (e) => {
+        e.preventDefault()
         setUserData({
             ...userData,
             [e.target.name]: e.target.value
         })
 
     }
-    // useEffect(()=>{
-    //     console.log(isAuthenticated);
-    //     if(isAuthenticated){
-    //         navigate('/')
-    //     }
-    // })
 
     //handle signup function
-    const handleLogin = (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault(); // Prevent default form submission
-        axiosRequest.post('/auth/login',userData,{withCredentials:true}).then((response) => {
+        await axiosRequest.post('/user/register', userData).then((response) => {
             setSuccessMessage(response.data.message)
-            //dispatch(storeUser(response.data._id))
-            navigate('/')
-            //setIsAuthenticated(true)
-           //localStorage.setItem('isAuthenticated',true);
-        }).catch(err => setErrorMessage(err.response.data.message))
+            navigate('/login')
+         
+        }).catch(err =>setErrorMessage(err.response.data.message))
+
     }
 
+
+
     return (
-        <div className='loginPage'>
+      <div className='loginPage'>
         <main className="mainLogin">
             <div className="containerLogin">
                 <section className="wrapperLogin">
                     <div className="headingLogin">
-                        <h1 className="text text-large">Log in</h1>
-                        <p className="text text-normal">New user? <span><a href="#" className="text text-links" onClick={()=>{navigate('/signup')}}>Create an account</a></span></p>
+                        <h1 className="text text-large">Sign Up</h1>
+                        <p className="text text-normal">New user? <span><a href="#" className="text text-links"></a></span></p>
                     </div>
-                    <form name="signin" className="formLogin" onSubmit={handleLogin}>
+                    <form name="signin" className="formLogin" onSubmit={handleSignUp}>
                         <div className="input-control">
-                            <label htmlFor="email" className="input-label" hidden>Email Address</label>
-                            <input type="email" required name="email" id="email" className="input-field" placeholder="Email Address"  onChange={getValue}/>
+                            <label htmlFor="" className="input-label" hidden>UserName</label>
+                            <input type="text" name="username" id="email" className="input-field" placeholder="UserName" onChange={getValue} />
                         </div>
                         <div className="input-control">
-                            <label htmlFor="password" className="input-label" hidden>Password</label>
-                            <input type="password" required name="password" id="password" className="input-field" placeholder="Password"   onChange={getValue}/>
+                            <label htmlFor="email" className="input-label" hidden >Email Address</label>
+                            <input type="email" name="email" id="email" className="input-field" placeholder="Email Address" onChange={getValue} />
                         </div>
                         <div className="input-control">
-                            <a href="#" className="text text-links" onClick={()=>{navigate('/enterEmail')}}>Forgot Password</a>
-                            <button type="submit" name="submit" id="input-submit"> Log in</button>
+                            <label htmlFor="password" className="input-label" hidden >Password</label>
+                            <input type="password" name="password" id="password" className="input-field" placeholder="Password" onChange={getValue} />
+                        </div>
+                        <div className="input-control">
+                            <a href="#" className="text text-links" onClick={()=>{navigate('/login')}}>Already a user</a>
+                            <button type="submit" name="submit" id="input-submit">Sign Up</button>
                         </div>
                     </form>
                     {successMessage &&
@@ -87,4 +79,4 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
     );
 };
 
-export default Login;
+export default SignUp;

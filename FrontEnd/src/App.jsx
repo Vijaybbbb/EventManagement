@@ -3,6 +3,7 @@ import './App.css'
 
 import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
+import Signup from './Pages/Signup/Signup'
 
 
 function App() {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path:"/login",
     element:<Login/>
+  },
+  {
+    path:"/signup",
+    element:<Signup/>
   },
 
 ])

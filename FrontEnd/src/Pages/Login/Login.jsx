@@ -38,7 +38,7 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
     //handle signup function
     const handleLogin = (e) => {
         e.preventDefault(); // Prevent default form submission
-        axiosRequest.post('/auth/login',userData,{withCredentials:true}).then((response) => {
+        axiosRequest.post('/user/login',userData,{withCredentials:true}).then((response) => {
             setSuccessMessage(response.data.message)
             //dispatch(storeUser(response.data._id))
             navigate('/')
