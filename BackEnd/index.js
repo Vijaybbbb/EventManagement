@@ -4,17 +4,17 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const adminRouter  = require('./Routes/admin.js')
-const userRouter  = require('./Routes/user.js')
+const userRouter  = require('./Routes/user.js')    
 const eventRouter  = require('./Routes/event.js')
 
 
 const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');    
 const cors = require('cors')
 const session = require('express-session')
-const {connect}  = require('./utils/DatabaseConnect.js')
-const { verifyTocken } = require('./Utils/verifyTocken.js')
-connect();
+const {connect}  = require('./Utils/databaseConnection.js')
+const { verifyTocken } = require('./Utils/verifyTocken.js') 
+connect();     
 
 app.use(session({
        secret: 'your-secret-key', // Change this to a random secret key
@@ -40,7 +40,7 @@ app.use('/admin',adminRouter)
 
 
 
-//app.use('/',verifyTocken)
+/////app.use('/',verifyTocken)
 
 //error handling middleware
 app.use((err,req,res,next)=>{

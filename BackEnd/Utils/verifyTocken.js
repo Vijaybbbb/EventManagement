@@ -1,6 +1,6 @@
 const jwt  = require('jsonwebtoken');
 const {createError}  = require('../Utils/error.js');
-const User = require('../Model/user.js');
+const User = require('../Models/user.js');
 const mongoose  = require('mongoose')
 
 const verifyTocken = async(req,res,next) =>{
@@ -15,7 +15,7 @@ const verifyTocken = async(req,res,next) =>{
                     return next(createError(401,'Invalid Creadentials'))
               }
               if(user.isBlocked == true){
-                     return next(createError(401,'User Blocked'))
+                     return next(createError(401,'User Blocked')) 
                }
 
               jwt.verify(tocken,process.env.JWT_SECRET_KEY,(err,user)=>{
