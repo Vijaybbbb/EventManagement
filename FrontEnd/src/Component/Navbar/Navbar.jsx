@@ -7,8 +7,8 @@ const Navbar = () => {
                        <nav className='nav-top'>
                               <div className='headings--wrapper__nav'>
                                      <div id='logo'><span>Events</span>Zoo</div>
-                                     <div className='section-title-in-nav'><a href="#Clothing">CLOTHING</a></div>
-                                     <div className='section-title-in-nav'><a href="#Accessories">ACCESSORIES</a></div>
+                                     <div className='section-title-in-nav'><a href="#Clothing">My Events</a></div>
+                                     <div className='section-title-in-nav'><a href="#Accessories">Wishlist</a></div>
                               </div>
 
                               <div id="input-wrapper__nav">
