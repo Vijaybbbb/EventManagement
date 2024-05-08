@@ -64,7 +64,18 @@ const login = async(req,res,next) =>{
        }
 }
 
+
+
+const checkout = (req,res,next) =>{
+       console.log(req.body);
+}
+
+
+
+
+
    module.exports = {
        register,
-       login
+       login,
+       checkout
    }

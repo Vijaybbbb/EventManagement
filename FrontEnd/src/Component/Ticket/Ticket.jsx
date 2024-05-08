@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Ticket.css'
 import Checkout from '../Checkout/Checkout'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
 import { storeOrder } from '../../Redux/orderSlice';
 

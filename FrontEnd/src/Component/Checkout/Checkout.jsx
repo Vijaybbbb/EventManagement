@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import useFetch from '../../Hooks/fetchData';
 import './Checkout.css'
 import React, { useState } from 'react';
+import { axiosRequest } from '../../../Utils/axiosRequest';
 
 const Checkout = ({selectedEventId}) => {
 
@@ -9,6 +10,34 @@ const Checkout = ({selectedEventId}) => {
        //console.log(data);
        const ticket = useSelector(state => state.orderDetails)
        const [total,setTotal] = useState(Number(ticket?.order?.price) + 25.50)
+
+       const [userData,setUserData] = useState({
+              name:null,
+              phone:null
+       })
+
+       const getvalue = (e)=>{
+              e.preventDefault()
+              setUserData({
+                     ...userData,
+                     [e.target.name]:e.target.value
+              })
+              console.log(userData);
+       }
+
+       function handleClick(e){
+              e.preventDefault()  
+              axiosRequest.post(`/user/checkout`,{userData,data},{withCredentials:true}).then((res)=>{
+                     console.log(res);
+              }).catch((err)=>{
+                     console.log(err);
+              })
+              
+       }
+
+
+
+
 
     return (
        <div className='checkoutForm'>
@@ -72,9 +101,9 @@ const Checkout = ({selectedEventId}) => {
                         </table>
                         <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' className='credit-card-image' id='credit-card-image' alt='Visa Logo' />
                         Name
-                        <input className='input-field' />
+                        <input className='input-field' name='name' onChange={getvalue}/>
                         Contact
-                        <input className='input-field' />
+                        <input className='input-field' name='phone' onChange={getvalue} />
                         <table className='half-input-table'>
                             <tbody>
                                 <tr>
@@ -85,7 +114,7 @@ const Checkout = ({selectedEventId}) => {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='pay-btn'>Proceed</button>
+                        <button className='pay-btn' onClick={handleClick}>Proceed</button>
                     </div>
                 </div>
             </div>

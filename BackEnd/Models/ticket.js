@@ -24,12 +24,12 @@ const ticketSchema = new Schema({
         type: Number,
         default: 0
     },
-    available: {
-        type: Number,
-        default: this.quantity
+    confirmed: {
+        type:Boolean,
+        default:false
     }
 });
 
-const Ticket = mongoose.model('Ticket', ticketSchema);
+const Ticket = mongoose.model('ticket', ticketSchema);
 
 module.exports = Ticket;
