@@ -2,7 +2,8 @@ const User = require('../Models/user.js')
 const bcrypt = require('bcrypt')
 const jwt  = require('jsonwebtoken');
 const { createError } = require('../Utils/error.js');
-
+const { razorpayInstance } = require('../Utils/paymentController.js');
+const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env
 
 //user registration
 const register =  async (req, res, next) => {
@@ -67,7 +68,38 @@ const login = async(req,res,next) =>{
 
 
 const checkout = (req,res,next) =>{
-       console.log(req.body);
+       const {userData,data,total} = req.body
+       try {
+              const amount = total * 100
+             
+              const options = {
+                     amount: amount,
+                     currency: 'INR',
+                     receipt: 'vijayramkp2002@gmail.com'
+              }
+              razorpayInstance.orders.create(options,
+                     (err, order) => {
+                            if (!err) {
+
+                                   res.status(200).json({
+                                          success: true,
+                                          msg: 'order created',
+                                          order_id: order.id,
+                                          key_id: RAZORPAY_ID_KEY,
+                                          name: data.eventName,
+                                          amount: amount,
+                                          order: order,
+                                          
+                                   })
+                            } else {
+                                   console.log(err);
+                            }
+                     }
+              )
+
+       } catch (error) {
+              console.log(error);
+       }
 }
 
 

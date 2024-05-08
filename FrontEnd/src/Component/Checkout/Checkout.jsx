@@ -3,13 +3,15 @@ import useFetch from '../../Hooks/fetchData';
 import './Checkout.css'
 import React, { useState } from 'react';
 import { axiosRequest } from '../../../Utils/axiosRequest';
+import useRazorpay from "react-razorpay";
 
-const Checkout = ({selectedEventId}) => {
+const Checkout = ({selectedEventId,setopenWindow}) => {
 
        const {data} =  useFetch(`event/${selectedEventId}`)
        //console.log(data);
        const ticket = useSelector(state => state.orderDetails)
        const [total,setTotal] = useState(Number(ticket?.order?.price) + 25.50)
+       const [Razorpay] = useRazorpay();
 
        const [userData,setUserData] = useState({
               name:null,
@@ -26,9 +28,47 @@ const Checkout = ({selectedEventId}) => {
        }
 
        function handleClick(e){
-              e.preventDefault()  
-              axiosRequest.post(`/user/checkout`,{userData,data},{withCredentials:true}).then((res)=>{
-                     console.log(res);
+              e.preventDefault() 
+              setopenWindow(false)
+              axiosRequest.post(`/user/checkout`,{userData,data,total},{withCredentials:true}).then((res)=>{
+
+                if(res){
+                    const options = {
+                      key: "rzp_test_9QHYCj7luW7qlw", // Enter the Key ID generated from the Dashboard
+                      amount:res.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                      currency: "INR",
+                      name: "GetYouRoom",
+                      description: "Test Transaction",
+                      image: "https://example.com/your_logo",
+                      order_id: res.data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
+                      handler: function (response) {
+                        //success transaction
+                        console.log('success');
+                      },
+                      prefill: {
+                        name: "vijay ram ",
+                        email: "youremail@example.com",
+                        contact: "9999999999",
+                      },
+                      notes: {
+                        address: "Razorpay Corporate Office",
+                      },
+                      theme: {
+                        color: "#3399cc",
+                      },
+                    };
+                  
+                    const rzp1 = new Razorpay(options);
+                    //failed transaction
+                    rzp1.on("payment.failed", function (response) {
+            
+                      console.log('failed');
+            
+                    });
+                  
+                    rzp1.open();
+                  }
+                 
               }).catch((err)=>{
                      console.log(err);
               })

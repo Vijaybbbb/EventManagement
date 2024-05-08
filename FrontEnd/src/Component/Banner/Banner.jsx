@@ -116,7 +116,7 @@ function selectedPage(selectedPage) {
                     <FontAwesomeIcon icon={faCircleXmark} className="rClose2" onClick={() =>
                                                                        setopenWindow(false)
                                                                        } />
-                    <Checkout selectedEventId={selectedEventId}/>
+                    <Checkout selectedEventId={selectedEventId} setopenWindow={setopenWindow}/>
                   </div>
                 )
               }
