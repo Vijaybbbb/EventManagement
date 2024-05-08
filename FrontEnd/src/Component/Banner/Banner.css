@@ -114,8 +114,10 @@ body{
    }
    
    #upcoming-events-list1 {
-       display: table;
+       display: flex;
+       flex-direction: column;
        width: 100%;
+       gap: 10px;
    }
    
    #upcoming-events-list1 .arlo-event-list {
@@ -137,7 +139,7 @@ body{
    
    
    .arlo[max-width~="1000px"] #upcoming-events-list1 .middle {
-       display: block;
+       display: flex;
    }
    
    .arlo[max-width~="1000px"] #upcoming-events-list1 .right {
@@ -418,3 +420,42 @@ body{
        margin-left: 450px;
        cursor: pointer;
 }
+
+
+
+
+.listPagePagination  .page-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; 
+    padding-bottom: 20px;
+   }
+   
+   .listPagePagination  .page-btn span {
+     display: inline-block;
+     border: 1px solid #000000;
+     margin-left: 10px;
+     width: 40px;
+     height: 40px;
+     text-align: center;
+     line-height: 40px;
+     cursor: pointer;
+     justify-content: center;
+   }
+   
+   .listPagePagination  .page-btn span:hover {
+     background: #000000;
+     color: #ffffff;
+   }
+ 
+   .listPagePagination  .pagination_selected{
+    background: #000000;
+    color: #ffffff;
+
+    }
+
+    .imageInfo{
+        height: 200px;
+        width: 200px;
+    }
+

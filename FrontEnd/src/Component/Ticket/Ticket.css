@@ -69,7 +69,7 @@
        color: #555;
    }
    .ticket .pricing-table .content .sign-up {
-       background: linear-gradient(to right, #8E2DE2 0%, #4A00E0 100%);
+       background: black;
        border-radius: 40px;
        font-weight: 500;
        position: relative;
@@ -103,7 +103,7 @@
    }
    .ticket .pricing-table .btn.bordered {
        z-index: 50;
-       color: #333;
+       color: #ffffff;
    }
    .ticket .pricing-table:hover .btn.bordered {
        color: #fff !important;
