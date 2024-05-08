@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Banner.css'
 import useFetch from '../../Hooks/fetchData'
+import Ticket from '../Ticket/Ticket'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
 const Banner = () => {
 
 const {data} =  useFetch(`event/allEvents`)
-console.log(data);
+const [openWindow,setopenWindow]   = useState(false)
 
   return (
     <div className='banner'>
@@ -38,7 +41,10 @@ console.log(data);
                 </div>
                 <div className="offers"> {event.date}</div>
                 <div className="registration">
-                {event.date}
+               <button onClick={(e)=>{
+                e.preventDefault()
+                setopenWindow(true)
+               }}>Book Now</button>
                   
                 </div>
               </div>
@@ -46,6 +52,20 @@ console.log(data);
           ))}
         </div>
       </div>
+
+
+      {
+        openWindow && (
+          <div>
+            <div className="reserve">
+                <div style={{marginLeft:"270px",marginTop:'114px'}}>
+                <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() => setopenWindow(false)} />
+                <Ticket/>
+                </div>
+                </div>
+          </div>
+        )
+      }
     </div>
     
   )

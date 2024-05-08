@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {axiosRequest} from '../../../Utils/axiosRequest.js';
 import { useDispatch, useSelector } from 'react-redux';
-//import {storeUser} from '../../Redux/loginSlice.js'
+import { storeUser } from '../../Redux/loginSlice.js';
+
 
 
 
 const Login = ({setIsAuthenticated,isAuthenticated}) => {
 
     //const userDetails = useSelector(state => state.userDetails)
-    //const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [successMessage,setSuccessMessage]  = useState()
     const [errorMessage,setErrorMessage] = useState()
@@ -39,8 +40,9 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
     const handleLogin = (e) => {
         e.preventDefault(); // Prevent default form submission
         axiosRequest.post('/user/login',userData,{withCredentials:true}).then((response) => {
+            console.log(response);
             setSuccessMessage(response.data.message)
-            //dispatch(storeUser(response.data._id))
+            dispatch(storeUser(response.data._id))
             navigate('/')
            //setIsAuthenticated(true)
             //localStorage.setItem('isAuthenticated',true);
