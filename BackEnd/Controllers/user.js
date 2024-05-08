@@ -70,6 +70,17 @@ const login = async(req,res,next) =>{
 const checkout = (req,res,next) =>{
        const {userData,data,total} = req.body
        try {
+              
+
+
+
+
+
+
+
+
+
+
               const amount = total * 100
              
               const options = {

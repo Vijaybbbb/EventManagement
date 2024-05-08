@@ -27,6 +27,10 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
               console.log(userData);
        }
 
+       function verifyPaymentSucess(response,bookingId){
+
+       }
+
        function handleClick(e){
               e.preventDefault() 
               setopenWindow(false)
@@ -43,7 +47,7 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
                       order_id: res.data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
                       handler: function (response) {
                         //success transaction
-                        console.log('success');
+                        verifyPaymentSucess(response,res.data.bookingId)
                       },
                       prefill: {
                         name: "vijay ram ",
