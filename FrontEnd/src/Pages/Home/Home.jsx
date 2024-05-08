@@ -3,6 +3,7 @@ import './Home.css'
 import Footer from '../../Component/Footer/Footer'
 import Navbar from '../../Component/Navbar/Navbar'
 import Banner from '../../Component/Banner/Banner'
+import Checkout from '../../Component/Checkout/Checkout'
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
             </section>
             <Banner/>
             <Footer/>
+            <Checkout/>
         </div>
     </div>
   )

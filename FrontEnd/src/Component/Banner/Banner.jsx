@@ -10,7 +10,12 @@ const Banner = () => {
 
 const {data} =  useFetch(`event/allEvents`)
 const [openWindow,setopenWindow]   = useState(false)
+const [openTickets,setopenTickets]   = useState(false)
+
 const [page, setPage] = useState(1)
+const [selectedEventId, setSelectedEventId] = useState()
+
+
 
 //function for indicate pagination
 function selectedPage(selectedPage) {
@@ -73,6 +78,9 @@ function selectedPage(selectedPage) {
                <button onClick={(e)=>{
                 e.preventDefault()
                 setopenWindow(true)
+                setopenTickets(true)
+                setSelectedEventId(event._id)
+             
                }}>Book Now</button>
                   
                 </div>
@@ -87,11 +95,19 @@ function selectedPage(selectedPage) {
         openWindow && (
           <div>
             <div className="reserve">
-                <div style={{marginLeft:"270px",marginTop:'114px'}}>
-                <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() => setopenWindow(false)} />
-                <Ticket/>
-                </div>
-                </div>
+              {
+                openTickets && (
+                  <div>
+                    <div style={{ marginLeft: "270px", marginTop: '114px' }}>
+                      <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() =>
+                                                                       setopenWindow(false)
+                                                                       } />
+                      <Ticket selectedEventId={selectedEventId} setopenTickets={setopenTickets} setopenWindow={setopenWindow} />
+                    </div>
+                  </div>
+                )
+              }
+            </div>
           </div>
         )
       }

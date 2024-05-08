@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Ticket.css'
+import Checkout from '../Checkout/Checkout'
 
 
 // Reusable Pricing Table Component
-const PricingTable = ({ title, price, features }) => {
+       
+const PricingTable = ({ title, price, features, selectedEventId,setopenWindow,setopenTickets}) => {
+
+  const [showCheckout,setShowCheckout] = useState(false)
+  const [ticketData,setTicketData]  = useState({
+    type:title,
+    price:price,
+    eventID:selectedEventId
+  })
+
+
+
+
+
+function handleBuyNow(e){
+  e.preventDefault()
+  setShowCheckout(true)
+  setopenTickets(false)
+}
+
+
   return (
+    <div>
     <div className="pricing-table gprice-single">
       <div className="head">
         <h4 className="title">{title}</h4>
@@ -19,34 +41,54 @@ const PricingTable = ({ title, price, features }) => {
           ))}
         </ul>
         <div className="sign-up">
-          <a href="#" className="btn bordered radius">Buy Now</a>
+          <a href="#" className="btn bordered radius" onClick={handleBuyNow} style={{marginTop:'54px'}}>Buy Now</a>
         </div>
       </div>
     </div>
+    
+    
+    
+
+    {
+      showCheckout && (
+        <div>
+          
+        </div>
+      )
+    }
+    
+
+      </div>
+
+
+
   );
 };
 
 // Main React Component
-class Ticket extends React.Component {
-  render() {
+const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
+
     return (
       <div className='ticket'>
        <div className="wrapper">
         <PricingTable
           title="Basic"
-          price="$19"
+          price="299"
           features={[
-            "5 GB Ram",
-            "40GB SSD Cloud Storage",
+            "Free Cancelation",
+            "kfnglkdgl",
             "Month Subscription",
-            "Responsive Framework",
-            "Monthly Billing Software",
-            "1 Free Website"
+            ".",
+            ". ",
+            ". ",
           ]}
+          selectedEventId={selectedEventId}
+          setopenWindow={setopenWindow}
+          setopenTickets={setopenTickets}
         />
         <PricingTable
           title="Standard"
-          price="$29"
+          price="499"
           features={[
             "5 GB Ram",
             "40GB SSD Cloud Storage",
@@ -55,10 +97,13 @@ class Ticket extends React.Component {
             "Monthly Billing Software",
             "1 Free Website"
           ]}
+          selectedEventId={selectedEventId}
+          setopenWindow={setopenWindow}
+          setopenTickets={setopenTickets}
         />
         <PricingTable
           title="Premium"
-          price="$39"
+          price="999"
           features={[
             "5 GB Ram",
             "40GB SSD Cloud Storage",
@@ -67,11 +112,14 @@ class Ticket extends React.Component {
             "Monthly Billing Software",
             "1 Free Website"
           ]}
+          selectedEventId={selectedEventId}
+          setopenWindow={setopenWindow}
+          setopenTickets={setopenTickets}
         />
       </div>
       </div>
     );
-  }
+  
 }
 
 export default Ticket;
