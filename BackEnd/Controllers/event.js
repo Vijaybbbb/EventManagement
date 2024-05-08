@@ -22,7 +22,20 @@ const allEvents  = async(req,res,next) => {
        }
 }
 
+
+
+const singleEvent  = async(req,res,next) => {
+       
+       try {
+           const data =  await Event.findById(req.params.id)
+           res.status(200).json(data)
+       } catch (error) {
+             next( createError(401,'Event fetching Failed'))
+       }
+}
+
 module.exports = {
        createEvent,
-       allEvents
+       allEvents,
+       singleEvent
 }

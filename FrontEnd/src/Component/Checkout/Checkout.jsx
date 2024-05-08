@@ -1,79 +1,97 @@
-import React from 'react'
+import { useSelector } from 'react-redux';
+import useFetch from '../../Hooks/fetchData';
 import './Checkout.css'
+import React, { useState } from 'react';
 
-const Checkout = () => {
+const Checkout = ({selectedEventId}) => {
 
-       function handleChange(){
+       const {data} =  useFetch(`event/${selectedEventId}`)
+       //console.log(data);
+       const ticket = useSelector(state => state.orderDetails)
+       const [total,setTotal] = useState(Number(ticket?.order?.price) + 25.50)
 
-       }
+    return (
+       <div className='checkoutForm'>
+        <div className='container'>
+            <div className='window'>
+                <div className='order-info'>
+                    <div className='order-info-content'>
+                        <h2>Ticket Details</h2>
+                        <div className='line'></div>
+                        <table className='order-table'>
+                            <tbody>
+                                <tr>
+                                    <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' className='full-width' alt='Nike Shoes' /></td>
+                                    <td>
+                                        <br /><span className='thin'>{ticket?.order?.type}</span>
+                                        <br />{data?.eventName}<br /><span className='thin small'>Color: Grey/Orange, Size: 10.5<br /><br /></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><div className='price'>{ticket?.order?.price}</div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className='line'></div>
+                        
+                      
+                        
+                        <div className='total'>
+                            <span style={{ float: 'left' }}>
+                                <div className='thin dense'>subtotal </div>
+                                <div className='thin dense'>Tax</div>
+                                TOTAL
+                            </span>
+                            <span style={{ float: 'right', textAlign: 'right' }}>
+                                <div className='thin dense'>{ticket?.order?.price}</div>
+                                <div className='thin dense'>25.50</div>
+                                {total}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div className='credit-info'>
+                    <div className='credit-info-content'>
+                        <table className='half-input-table'>
+                            <tbody>
+                                {/* <tr>
+                                    <td>Please select your card:</td>
+                                    <td>
+                                        <div className='dropdown' id='card-dropdown'>
+                                            <div className='dropdown-btn' id='current-card'>Visa</div>
+                                            <div className='dropdown-select'>
+                                                <ul>
+                                                    <li>Master Card</li>
+                                                    <li>American Express</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr> */}
+                            </tbody>
+                        </table>
+                        <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' className='credit-card-image' id='credit-card-image' alt='Visa Logo' />
+                        Name
+                        <input className='input-field' />
+                        Contact
+                        <input className='input-field' />
+                        <table className='half-input-table'>
+                            <tbody>
+                                <tr>
+                                    <td>Ticke Type
+                                        <input className='input-field' disabled value={ticket?.order?.type} readOnly/>
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button className='pay-btn'>Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    );
+};
 
-  return (
-    <div className='checkoutForm'>
-      <div className="row">
-      <div className="col-md-12"> 
-        <form>
-          <h1>Sign Up</h1>
-
-          <fieldset>
-            <legend><span className="number">1</span> Your Basic Info</legend>
-
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name"  required />
-
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email"  onChange={handleChange} required />
-
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password"  onChange={handleChange} required />
-
-            <label>Age:</label>
-            <input type="radio" id="under_13" value="under_13" name="age" onChange={handleChange} /><label htmlFor="under_13" className="light">Under 13</label><br />
-            <input type="radio" id="over_13" value="over_13" name="age" onChange={handleChange} /><label htmlFor="over_13" className="light">Over 13</label>
-
-          </fieldset>
-
-          <fieldset>
-
-            <legend><span className="number">2</span> Your Profile</legend>
-
-            <label htmlFor="bio">Bio:</label>
-            <textarea id="bio" name="bio"  onChange={handleChange}></textarea>
-
-            <label htmlFor="job">Job Role:</label>
-            <select id="job" name="jobRole"onChange={handleChange}>
-              <optgroup label="Web">
-                <option value="frontend_developer">Front-End Developer</option>
-                <option value="php_developer">PHP Developer</option>
-                <option value="python_developer">Python Developer</option>
-                <option value="rails_developer">Rails Developer</option>
-                <option value="web_designer">Web Designer</option>
-                <option value="wordpress_developer">Wordpress Developer</option>
-              </optgroup>
-              <optgroup label="Mobile">
-                <option value="android_developer">Android Developer</option>
-                <option value="ios_developer">IOS Developer</option>
-                <option value="mobile_designer">Mobile Designer</option>
-              </optgroup>
-              <optgroup label="Business">
-                <option value="business_owner">Business Owner</option>
-                <option value="freelancer">Freelancer</option>
-              </optgroup>
-            </select>
-
-            <label>Interests:</label>
-            <input type="checkbox" id="development" value="Development" name="interests" onChange={handleChange} /><label className="light" htmlFor="development">Development</label><br />
-            <input type="checkbox" id="design" value="Design" name="interests" onChange={handleChange} /><label className="light" htmlFor="design">Design</label><br />
-            <input type="checkbox" id="business" value="Business" name="interests" onChange={handleChange} /><label className="light" htmlFor="business">Business</label>
-
-          </fieldset>
-
-          <button type="submit">Sign Up</button>
-
-        </form>
-      </div>
-    </div>
-    </div>
-  )
-}
-
-export default Checkout
+export default Checkout;

@@ -3,7 +3,7 @@ import './Home.css'
 import Footer from '../../Component/Footer/Footer'
 import Navbar from '../../Component/Navbar/Navbar'
 import Banner from '../../Component/Banner/Banner'
-import Checkout from '../../Component/Checkout/Checkout'
+
 
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
        <div>
-            <Navbar/>
+             <Navbar/>
             <section id="banner-wrapper">
                 <div id="owl-carousel" className="owl-carousel owl-theme">
                     <div className="item">
@@ -22,7 +22,7 @@ const Home = () => {
             </section>
             <Banner/>
             <Footer/>
-            <Checkout/>
+            
         </div>
     </div>
   )

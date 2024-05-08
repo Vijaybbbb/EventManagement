@@ -420,7 +420,13 @@ body{
        margin-left: 450px;
        cursor: pointer;
 }
-
+.rClose2{
+    position: absolute;
+    font-size: 35px;
+    margin-top: 92px;
+    margin-left: 1150px;
+    cursor: pointer;
+}
 
 
 

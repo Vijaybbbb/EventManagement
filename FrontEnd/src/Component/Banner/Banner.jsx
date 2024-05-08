@@ -5,12 +5,15 @@ import Ticket from '../Ticket/Ticket'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 import img from '../../../src/assets/images/img.jpg'
+import Checkout from '../Checkout/Checkout'
+import Navbar from '../Navbar/Navbar'
 
 const Banner = () => {
 
 const {data} =  useFetch(`event/allEvents`)
 const [openWindow,setopenWindow]   = useState(false)
 const [openTickets,setopenTickets]   = useState(false)
+
 
 const [page, setPage] = useState(1)
 const [selectedEventId, setSelectedEventId] = useState()
@@ -29,6 +32,8 @@ function selectedPage(selectedPage) {
 }
 
   return (
+    <div>
+     
     <div className='banner'>
         <div className="arlo">
         <div className="arlo-page-title arlo-font-primary">
@@ -95,15 +100,23 @@ function selectedPage(selectedPage) {
         openWindow && (
           <div>
             <div className="reserve">
+              
               {
-                openTickets && (
+                openTickets ? (
                   <div>
                     <div style={{ marginLeft: "270px", marginTop: '114px' }}>
                       <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() =>
                                                                        setopenWindow(false)
                                                                        } />
-                      <Ticket selectedEventId={selectedEventId} setopenTickets={setopenTickets} setopenWindow={setopenWindow} />
+                      <Ticket  selectedEventId={selectedEventId} setopenTickets={setopenTickets} setopenWindow={setopenWindow} />
                     </div>
+                  </div>
+                ):(
+                  <div>
+                    <FontAwesomeIcon icon={faCircleXmark} className="rClose2" onClick={() =>
+                                                                       setopenWindow(false)
+                                                                       } />
+                    <Checkout selectedEventId={selectedEventId}/>
                   </div>
                 )
               }
@@ -132,6 +145,7 @@ function selectedPage(selectedPage) {
       </div>
 
 
+    </div>
     </div>
     
   )

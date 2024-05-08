@@ -13,7 +13,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 import userDetails from './loginSlice.js'
-
+import orderDetails from './orderSlice.js'
 
 const persistConfig = {
   key: 'root',
@@ -22,7 +22,7 @@ const persistConfig = {
 }
 const rootReducer = combineReducers({
        userDetails:userDetails,
-      
+       orderDetails:orderDetails,
 })
 
 const persistedReducer = persistReducer(persistConfig,rootReducer)
