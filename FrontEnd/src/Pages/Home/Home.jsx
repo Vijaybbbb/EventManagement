@@ -2,6 +2,7 @@ import React from 'react'
 import './Home.css'
 import Footer from '../../Component/Footer/Footer'
 import Navbar from '../../Component/Navbar/Navbar'
+import Banner from '../../Component/Banner/Banner'
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
                     
                 </div>
             </section>
+            <Banner/>
             <Footer/>
         </div>
     </div>

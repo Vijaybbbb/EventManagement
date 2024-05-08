@@ -6,14 +6,15 @@ const Navbar = () => {
                 <header>
                        <nav className='nav-top'>
                               <div className='headings--wrapper__nav'>
-                                     <div id='logo'><span>Events</span>Zoo</div>
+                                     <div id='logo'><span>Events</span>Zo</div>
                                      <div className='section-title-in-nav'><a href="#Clothing">My Events</a></div>
-                                     <div className='section-title-in-nav'><a href="#Accessories">Wishlist</a></div>
+                                     <div className='section-title-in-nav'><a href="#Accessories">Notification</a></div>
+                                     <div className='section-title-in-nav'><a href="#Accessories">Profile</a></div>
                               </div>
 
                               <div id="input-wrapper__nav">
                                      <i className="fas fa-search"></i>
-                                     <input id="search-box" type="text" name="search" placeholder="Search for Clothing and Accessories" />
+                                     <input id="search-box" type="text" name="search" placeholder="Search an event" />
                               </div>
                               <div id="count-profile-wrapper">
                                      <div className='order-count-wrapper'>
