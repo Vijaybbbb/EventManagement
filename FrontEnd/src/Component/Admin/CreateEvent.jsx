@@ -90,7 +90,7 @@ const CreateEvent = () => {
                                                                onChange={getValue}
                                                         />
                                                  </fieldset>
-                                                 <label htmlFor="" style={{ marginBottom: '10px' }}>Hotel Type</label>
+                                                 <label htmlFor="" style={{ marginBottom: '10px' }}>Event Type</label>
                                                  <fieldset>
                                                         <select
                                                                name='type'
@@ -99,12 +99,12 @@ const CreateEvent = () => {
                                                                autoFocus
                                                                onChange={getValue}
                                                         >
-                                                               <option value="">Select Hotel Type</option>
-                                                               <option value="Hotel">Hotel</option>
-                                                               <option value="Apartment">Apartment</option>
-                                                               <option value="Resort">Resort</option>
-                                                               <option value="Villa">Villa</option>
-                                                               <option value="Cabin">Cabin</option>
+                                                               <option value="">Select Event Type</option>
+                                                               <option value="Hotel">Science</option>
+                                                               <option value="Apartment">Technology</option>
+                                                               <option value="Resort">Money & Economy</option>
+                                                               <option value="Villa">Foods exihibtion</option>
+                                                               <option value="Cabin">Education</option>
 
                                                                {/* Add more options as needed */}
                                                         </select>
