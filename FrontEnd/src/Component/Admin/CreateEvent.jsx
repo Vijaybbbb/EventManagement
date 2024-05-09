@@ -77,8 +77,8 @@ const CreateEvent = () => {
 
                                    <div className="container">
                                           <form id="contact">
-                                                 <h3>Hotel information</h3><br />
-                                                 <label htmlFor="" style={{ marginBottom: '10px' }}>Hotel Name</label>
+                                                 <h3>Event information</h3><br />
+                                                 <label htmlFor="" style={{ marginBottom: '10px' }}>Event Name</label>
                                                  <fieldset>
                                                         <input
                                                                name='name'
@@ -110,13 +110,13 @@ const CreateEvent = () => {
                                                         </select>
                                                  </fieldset>
 
-                                                 <label htmlFor="">City</label>
+                                                 <label htmlFor="">Date</label>
                                                  <fieldset>
 
 
                                                  </fieldset>
-                                                 <label htmlFor="">Address</label>
 
+                                                 <label htmlFor="">Time</label>
                                                  <fieldset>
                                                         <input
                                                                name='address'
@@ -127,7 +127,8 @@ const CreateEvent = () => {
                                                                onChange={getValue}
                                                         />
                                                  </fieldset>
-                                                 <label htmlFor="">Distance</label>
+
+                                                 <label htmlFor="">location</label>
                                                  <fieldset>
                                                         <input
                                                                name='distance'
@@ -139,12 +140,23 @@ const CreateEvent = () => {
                                                         />
                                                  </fieldset>
 
-                                                 <label htmlFor="">Cheapest Price</label>
+                                                 <label htmlFor="">organizer</label>
                                                  <fieldset>
                                                         <input
                                                                name='cheapestPrice'
                                                                type="url"
                                                                tabIndex="4"
+                                                               required
+
+                                                               onChange={getValue}
+                                                        />
+                                                 </fieldset>
+                                                 <label htmlFor="">attendees Limit</label>
+                                                 <fieldset>
+                                                        <input
+                                                               name='address'
+                                                               type="tel"
+                                                               tabIndex="3"
                                                                required
 
                                                                onChange={getValue}
@@ -172,7 +184,7 @@ const CreateEvent = () => {
                                                                data-submit="...Sending"
                                                                onClick={handleCreate}
                                                         >
-                                                               Create Hotel
+                                                               Create Event
                                                         </button><br /><br /><br />
 
                                                  </fieldset>
