@@ -6,7 +6,8 @@ const { razorpayInstance } = require('../Utils/paymentController.js');
 const { Mongoose, default: mongoose } = require('mongoose');
 const Ticket = require('../Models/ticket.js');
 const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { sendToEmail } = require('../Utils/sendEmail.js');
 
 
 //user registration
@@ -73,7 +74,7 @@ const login = async(req,res,next) =>{
 
 const checkout = async(req,res,next) =>{
        const {userData,data,total,ticket,userId} = req.body
-       console.log(req.body);
+
        try {
               //create ticket for event 
               const obj = {
@@ -132,6 +133,10 @@ const verifyPayment = async (req, res, next) => {
        const order_id = response.razorpay_order_id
        const signature = response.razorpay_signature;
 
+       const user  = await User.findById(userId)
+
+
+
        try {
               const hmac = crypto.createHmac('sha256', RAZORPAY_SECRET_KEY);
               hmac.update(order_id + '|' + payment_id);
@@ -143,7 +148,7 @@ const verifyPayment = async (req, res, next) => {
                      console.log("payment successs",);
 
                      PaymentStatus(ticketId, userId).then((data)=>{
-                          
+                          sendToEmail(user.email)
                      }).catch(err=>console.log(err))
 
                      res.status(200).json({ message: 'order placed', response: response })
@@ -180,6 +185,13 @@ async function PaymentStatus(ticketId, userId,) {
               console.log(error);
        }
 }
+
+
+
+
+
+
+
 
 
    module.exports = {
