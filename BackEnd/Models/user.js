@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -21,6 +22,12 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    bookedTickets:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'ticket',
+        }
+    ]
     
 }, { timestamps: true });
 

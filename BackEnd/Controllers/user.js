@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt')
 const jwt  = require('jsonwebtoken');
 const { createError } = require('../Utils/error.js');
 const { razorpayInstance } = require('../Utils/paymentController.js');
+const { Mongoose, default: mongoose } = require('mongoose');
+const Ticket = require('../Models/ticket.js');
 const { RAZORPAY_ID_KEY, RAZORPAY_SECRET_KEY } = process.env
+const crypto = require('crypto')
+
 
 //user registration
 const register =  async (req, res, next) => {
@@ -67,18 +71,22 @@ const login = async(req,res,next) =>{
 
 
 
-const checkout = (req,res,next) =>{
-       const {userData,data,total} = req.body
+const checkout = async(req,res,next) =>{
+       const {userData,data,total,ticket,userId} = req.body
+       console.log(req.body);
        try {
+              //create ticket for event 
+              const obj = {
+                     eventId:new mongoose.Types.ObjectId(data._id),
+                     userId:new mongoose.Types.ObjectId(userId),
+                     ticketType:ticket.ticket.type,
+                     price:total,
+                     expires:data.date
+              }
               
-
-
-
-
-
-
-
-
+              await Ticket.create(obj)
+              const allTicket  = await Ticket.find()
+              const lastData = allTicket[allTicket.length-1]
 
 
               const amount = total * 100
@@ -100,7 +108,7 @@ const checkout = (req,res,next) =>{
                                           name: data.eventName,
                                           amount: amount,
                                           order: order,
-                                          
+                                          lastDataId:lastData
                                    })
                             } else {
                                    console.log(err);
@@ -116,9 +124,67 @@ const checkout = (req,res,next) =>{
 
 
 
+//verify payment
+const verifyPayment = async (req, res, next) => {
+       const { response, ticketId, userId } = req.body
+
+       const payment_id = response.razorpay_payment_id;
+       const order_id = response.razorpay_order_id
+       const signature = response.razorpay_signature;
+
+       try {
+              const hmac = crypto.createHmac('sha256', RAZORPAY_SECRET_KEY);
+              hmac.update(order_id + '|' + payment_id);
+
+              // Calculating the HMAC digest (resulting hash)
+              const digest = hmac.digest('hex');
+
+              if (digest == signature) {
+                     console.log("payment successs",);
+
+                     PaymentStatus(ticketId, userId).then((data)=>{
+                          
+                     }).catch(err=>console.log(err))
+
+                     res.status(200).json({ message: 'order placed', response: response })
+              }
+
+       } catch (error) {
+              console.log(error);
+              next(createError(401, 'Payment Failed'))
+       }
+
+}
+
+
+
+//set payment status to each new bookings
+async function PaymentStatus(ticketId, userId,) {
+
+       try {
+
+              const result = await Ticket.updateOne(
+                     { _id: ticketId},
+                     { $set: { "confirmed": true } }
+              );
+
+              await User.findByIdAndUpdate(userId,{
+                     $addToSet:{
+                            bookedTickets:ticketId
+                     }
+              })
+
+              return result;
+
+       } catch (error) {
+              console.log(error);
+       }
+}
+
 
    module.exports = {
        register,
        login,
-       checkout
+       checkout,
+       verifyPayment
    }

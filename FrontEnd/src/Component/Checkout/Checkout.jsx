@@ -9,8 +9,9 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
 
        const {data} =  useFetch(`event/${selectedEventId}`)
        //console.log(data);
-       const ticket = useSelector(state => state.orderDetails)
-       const [total,setTotal] = useState(Number(ticket?.order?.price) + 25.50)
+       const ticket = useSelector(state => state.ticketDetails)
+       const {userId} = useSelector(state => state.userDetails)
+       const [total,setTotal] = useState(Number(ticket?.ticket?.price) + 25.50)
        const [Razorpay] = useRazorpay();
 
        const [userData,setUserData] = useState({
@@ -27,14 +28,32 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
               console.log(userData);
        }
 
-       function verifyPaymentSucess(response,bookingId){
 
+
+
+       function verifyPaymentSucess(response,ticketId){
+
+        axiosRequest.post(`user/verifyPayment`,
+        { response: response,
+          ticketId: ticketId ,
+          userId:userId,
+       
+         }, { withCredentials: true }).then((res) => {
+           console.log(res);
+  
+       }).catch((err) => {
+            console.log(err);
+       })
        }
+
+
+
+
 
        function handleClick(e){
               e.preventDefault() 
               setopenWindow(false)
-              axiosRequest.post(`/user/checkout`,{userData,data,total},{withCredentials:true}).then((res)=>{
+              axiosRequest.post(`/user/checkout`,{userData,data,total,ticket,userId},{withCredentials:true}).then((res)=>{
 
                 if(res){
                     const options = {
@@ -47,7 +66,7 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
                       order_id: res.data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
                       handler: function (response) {
                         //success transaction
-                        verifyPaymentSucess(response,res.data.bookingId)
+                        verifyPaymentSucess(response,res.data.lastDataId)
                       },
                       prefill: {
                         name: "vijay ram ",
@@ -96,12 +115,12 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
                                 <tr>
                                     <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' className='full-width' alt='Nike Shoes' /></td>
                                     <td>
-                                        <br /><span className='thin'>{ticket?.order?.type}</span>
+                                        <br /><span className='thin'>{ticket?.ticket?.type}</span>
                                         <br />{data?.eventName}<br /><span className='thin small'>Color: Grey/Orange, Size: 10.5<br /><br /></span>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><div className='price'>{ticket?.order?.price}</div></td>
+                                    <td><div className='price'>{ticket?.ticket?.price}</div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -152,7 +171,7 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
                             <tbody>
                                 <tr>
                                     <td>Ticke Type
-                                        <input className='input-field' disabled value={ticket?.order?.type} readOnly/>
+                                        <input className='input-field' disabled value={ticket?.ticket?.type} readOnly/>
                                     </td>
                                     
                                 </tr>

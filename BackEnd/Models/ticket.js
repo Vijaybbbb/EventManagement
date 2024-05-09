@@ -8,6 +8,11 @@ const ticketSchema = new Schema({
         ref: 'event',
         required: true
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     ticketType: {
         type: String,
         required: true
@@ -27,6 +32,10 @@ const ticketSchema = new Schema({
     confirmed: {
         type:Boolean,
         default:false
+    },
+    expires:{
+        type:String,
+    
     }
 });
 

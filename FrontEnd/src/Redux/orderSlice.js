@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const orderSlice = createSlice({
-       name:'order',
+       name:'ticket',
        initialState:{
-              order:null
+              ticket:null
        },
        reducers:{
               storeOrder:(state,action)=>{
-                     state.order = action.payload
+                     state.ticket = action.payload
               }
        }
 })
