@@ -4,6 +4,7 @@ import './App.css'
 import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
 import Signup from './Pages/Signup/Signup'
+import Admin from './Pages/Admin/Admin'
 
 
 function App() {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
     path:"/signup",
     element:<Signup/>
   },
+  {
+    path:"/admin",
+    element:<Admin/>
+  },
+
 
 ])
 

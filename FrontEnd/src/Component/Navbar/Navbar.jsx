@@ -7,6 +7,7 @@ import { storeUser } from '../../Redux/loginSlice'
 const Navbar = () => {
 
   const userDetails = useSelector(state => state.userDetails)
+  
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
