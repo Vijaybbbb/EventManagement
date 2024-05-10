@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i&display=swap");
+
+.myTicket * { box-sizing: border-box; }
+
+.myTicket html, .myTicket body { height: 100%; padding: 0; margin: 0; }
+
+.myTicket .sr-only { position: absolute; left: -9999px; }
+
+.myTicket body { background-color: #2772B8; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 19px; color: #172941; }
+
+.myTicket button { font-size: 14px; line-height: 19px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
+
+.myTicket img { max-width: 100%; }
+
+@media (min-width: 725px) { .myTicket .mobile-only { display: none; } }
+
+@media (min-width: 0) and (max-width: 725px) { .myTicket .desktop-only { display: none; } }
+
+.myTicket #multi-ticket, .myTicket #multi-ticket-layout { height: 100%; width: 100%; }
+
+.myTicket .mobile-ticket__page-container, .myTicket .mobile-ticket__page { margin: 0 auto; min-width: 300px; max-width: 881px; }
+
+.myTicket .touchevents .mobile-ticket__print-all a:active, .myTicket .touchevents .mobile-ticket__print-all a:focus { text-decoration: underline; }
+
+.myTicket .no-touchevents .mobile-ticket__print-all a:hover { text-decoration: underline; }
+
+.myTicket .mobile-ticket__page-header, .myTicket .mobile-ticket__page-footer { color: #FFFFFF; }
+
+.myTicket .mobile-ticket__page-header .mobile-ticket__page-container, .myTicket .mobile-ticket__page-footer .mobile-ticket__page-container { padding: 20px 35px; display: flex; justify-content: space-between; }
+
+.myTicket .mobile-ticket__page-header svg path, .myTicket .mobile-ticket__page-footer svg path { fill: #FFFFFF; }
+
+.myTicket .mobile-ticket__page-header a, .myTicket .mobile-ticket__page-header button, .myTicket .mobile-ticket__page-footer a, .myTicket .mobile-ticket__page-footer button { font-size: 14px; line-height: 19px; color: #ffffff; text-decoration: none; }
+
+.myTicket .mobile-ticket__page-header a:hover, .myTicket .mobile-ticket__page-header button:hover, .myTicket .mobile-ticket__page-footer a:hover, .myTicket .mobile-ticket__page-footer button:hover { text-decoration: underline; }
+
+.myTicket .mobile-ticket__page-header .mobile-ticket__page-container { justify-content: space-between; }
+
+.myTicket .mobile-ticket__page-footer { margin-top: 26px; }
+
+.myTicket .mobile-ticket__page-footer .mobile-ticket__page-container { padding: 100px 0 70px; justify-content: center; }
+
+@media (min-width: 0) and (max-width: 600px) { .myTicket .mobile-ticket__page-footer .mobile-ticket__page-container { padding: 65px 0 30px; flex-direction: column; align-items: center; } }
+
+.myTicket .page-footer__link { margin: 0 0 16px; }
+
+@media (min-width: 600px) { .myTicket .page-footer__link { margin: 0 8px; } }
+
+.myTicket .page-footer__link.button--link { background: transparent; border: 0; }
+
+.myTicket .page-footer__link.button--link:hover { color: #ffffff; }
+
+.myTicket .mobile-ticket__header-print { display: flex; font-weight: 600; }
+
+.myTicket .mobile-ticket__header-print i { margin-left: 5px; height: 20px; }
+
+.myTicket .mobile-ticket__ticket { margin: 17px 24px; }
+
+.myTicket .mobile-ticket__empty-state { margin: 17px 24px 50px; }
+
+.myTicket .card { display: block; background-color: #FFFFFF; border-radius: 10px; box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1), 0px 0px 3px 0px rgba(0, 0, 0, 0.1); margin-bottom: 10px; overflow: hidden; }
+
+.myTicket .card__header { display: flex; align-items: flex-end; justify-content: space-between; align-items: center; padding: 17px 24px 17px 24px; }
+
+.myTicket .card__header.ticket__count { display: block; color: #657381; font-weight: 600; border-bottom: 1px solid #DBE2EA; }
+
+@media (min-width: 600px) { .myTicket .card__header.ticket__count { display: none; } }
+
+.myTicket .card__header-title { font-size: 14px; line-height: 19px; font-weight: 400; margin: 0; }
+
+.myTicket .card__content { padding: 15px 24px; }
+
+.myTicket .card__footer { display: flex; border-top: 1px solid #DBE2EA; }
+
+@media (min-width: 600px) { .myTicket .card__footer { border: 0; padding: 0 20px 20px; } }
+
+.myTicket .mobile-ticket__header { display: flex; justify-content: space-between; align-items: center; padding: 0 0 15px 0; font-size: 12px; line-height: 16px; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__header { font-size: 15px; line-height: 20px; padding: 10px 0; } }
+
+.myTicket .mobile-ticket__level-info { display: flex; justify-content: space-between; align-items: center; color: #657381; }
+
+@media (min-width: 725px) { .myTicket .mobile-ticket__level-info { font-weight: 600; } }
+
+.myTicket .mobile-ticket__name { font-size: 18px; line-height: 25px; font-weight: 600; }
+
+@media (min-width: 725px) { .myTicket .mobile-ticket__name { font-size: 22px; line-height: 30px; } }
+
+.myTicket .mobile-ticket__number { color: #657381; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__number { text-align: center; } }
+
+@media (min-width: 600px) { .myTicket .ticket-number--mobile { display: none; } }
+
+@media (min-width: 0) and (max-width: 600px) { .myTicket .ticket-number--desktop { display: none; } }
+
+.myTicket .mobile-ticket__seat { display: flex; text-align: center; padding-top: 15px; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__seat { padding-top: 24px; } }
+
+.myTicket .mobile-ticket__seat-info { margin-right: 20px; }
+
+.myTicket .seat__header, .myTicket .seat__info { display: block; }
+
+.myTicket .seat__header { font-size: 12px; line-height: 16px; text-transform: uppercase; padding-bottom: 8px; }
+
+@media (min-width: 600px) { .myTicket .seat__header { font-size: 14px; line-height: 19px; padding-bottom: 5px; } }
+
+.myTicket .seat__info { font-weight: 600; font-size: 14px; line-height: 19px; }
+
+@media (min-width: 600px) { .myTicket .seat__info { font-size: 15px; line-height: 20px; } }
+
+.myTicket .mobile-ticket__ticket-container { display: flex; flex-direction: column; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-container { flex-direction: row; } }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-info { flex: 1; } }
+
+@media (min-width: 725px) { .myTicket .mobile-ticket__ticket-info { flex: 2; } }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-info .card__content { padding: 15px 50px 40px; } }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-images { flex: 1; } }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-info .ticket-info__individual { background: #F9FAFB; } }
+
+@media (min-width: 0) and (max-width: 600px) { .myTicket .mobile-ticket__ticket-info .ticket-info__event { padding-top: 0; } }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-images { border-left: 1px solid #DBE2EA; } }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__ticket-images .card__content { padding: 24px; } }
+
+.myTicket .mobile-ticket__price-level { font-size: 15px; line-height: 20px; font-weight: 600; padding-bottom: 15px; }
+
+@media (min-width: 725px) { .myTicket .mobile-ticket__price-level { font-size: 18px; line-height: 25px; padding-bottom: 0; } }
+
+.myTicket .mobile-ticket__event-info { font-size: 12px; line-height: 16px; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__event-info { font-size: 14px; line-height: 19px; } }
+
+.myTicket .mobile-ticket__note { padding-top: 12px; font-size: 14px; line-height: 19px; }
+
+.myTicket .event-info__name, .myTicket .event-info__time, .myTicket .event-info__venue { display: block; color: #657381; }
+
+.myTicket .event-info__name b, .myTicket .event-info__time b, .myTicket .event-info__venue b { font-weight: 400 !important; }
+
+.myTicket .event-info__time--start, .myTicket .event-info__time--end { display: inline-block; white-space: nowrap; }
+
+.myTicket .mobile-ticket__barcode, .myTicket .mobile-ticket__add-to-wallet { display: flex; justify-content: center; align-items: center; }
+
+.myTicket .mobile-ticket__barcode { padding-bottom: 20px; }
+
+.myTicket .mobile-ticket__barcode-image { max-width: 140px; }
+
+@media (min-width: 500px) { .myTicket .mobile-ticket__barcode-image { max-width: 200px; } }
+
+.myTicket .mobile-ticket__add-to-wallet { padding-bottom: 20px; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__add-to-wallet { padding-bottom: 0; } }
+
+.myTicket .mobile-ticket__add-to-wallet-image { max-width: 168px; }
+
+.myTicket .mobile-ticket__button { border: 0; background-color: transparent; outline: 0; padding: 17px 5px; flex: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #2874B7; text-decoration: none; }
+
+.myTicket .mobile-ticket__button:active, .myTicket .mobile-ticket__button:focus { background: #eeeeee; }
+
+@media (min-width: 600px) { .myTicket .mobile-ticket__button { border-radius: 5px; } }
+
+.myTicket .no-touchevents .mobile-ticket__button:hover { background: #eeeeee; cursor: pointer; }
+
+.myTicket .mobile-ticket__button-icon { display: flex; align-items: center; justify-content: center; margin-left: 5px; margin-bottom: -2px; }
+
+.myTicket .mobile-ticket__button-icon svg path { fill: #2874B7; }
+
+.myTicket .mobile-ticket__copy-link.copied { background-color: #E4FFE5; color: #1D5A1E; }
+
+.myTicket .mobile-ticket__copy-link.copied svg path { fill: #1D5A1E; }
+
+.myTicket .no-touchevents .mobile-ticket__copy-link.copied:hover { background-color: #E4FFE5; cursor: pointer; }
+
+.myTicket .mobile-ticket__pdf-link { text-align: center; font-size: 12px; }
+
+.myTicket .mobile-ticket__pdf-link a, .myTicket .mobile-ticket__pdf-link a:visited { color: #ffffff; text-decoration: none; }
+
+.myTicket .touchevents .mobile-ticket__pdf-link a:active, .myTicket .touchevents .mobile-ticket__pdf-link a:focus { text-decoration: underline; }
+
+.myTicket .no-touchevents .mobile-ticket__pdf-link a:hover { text-decoration: underline; }
+
+.myTicket .mobile-ticket__empty-message { font-weight: 600; color: #657381; }
+
+.myTicket #mobile-ticket__overlay { width: 100%; height: 100%; background: rgba(0, 0, 0, 0); position: fixed; top: 0px; left: 0; right: 0; bottom: 0; z-index: 1000; overflow: auto; visibility: hidden; transition: all 0.3s; }
+
+.myTicket #mobile-ticket__overlay .mobile-ticket-overlay__body { margin: 20px auto 0; min-height: calc(100% - 20px); height: auto; min-width: 300px; max-width: 581px; background: #FFFFFF; border-top-left-radius: 10px; border-top-right-radius: 10px; padding: 20px; -webkit-transform: translateY(100%); transform: translateY(100%); transition: all 0.3s; }
+
+.myTicket .overlay--open #mobile-ticket__overlay { background: rgba(0, 0, 0, 0.75); visibility: visible; }
+
+.myTicket .overlay--open #mobile-ticket__overlay .mobile-ticket-overlay__body { -webkit-transform: translateY(0%); transform: translateY(0%); }
+
+.myTicket .overlay__close-button { background: transparent; border: 0; border-radius: 5px; padding: 5px 8px; font-size: 14px; line-height: 19px; font-weight: 600; color: #172941; cursor: pointer; }
+
+.myTicket .overlay__close-button:hover { background: #DBE2EA; }

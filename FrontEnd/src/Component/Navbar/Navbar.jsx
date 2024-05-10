@@ -34,7 +34,10 @@ function getSearchText(e){
                        <nav className='nav-top'>
                               <div className='headings--wrapper__nav'>
                                      <div id='logo'><span>Events</span>Zo</div>
-                                     <div className='section-title-in-nav'><a href="#Clothing">My Events</a></div>
+                                     <div className='section-title-in-nav'  onClick={(e)=>{
+                                          e.preventDefault()
+                                          navigate('/myTickets')}}
+                                          ><a href="#Clothing">My Tickets</a></div>
                                      <div className='section-title-in-nav'><a href="#Accessories">Notification</a></div>
                                      <div className='section-title-in-nav'><a href="#Accessories" onClick={handleLogout}>log out</a></div>
                               </div>

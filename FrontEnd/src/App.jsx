@@ -5,6 +5,8 @@ import Login from './Pages/Login/Login'
 import Home from './Pages/Home/Home'
 import Signup from './Pages/Signup/Signup'
 import Admin from './Pages/Admin/Admin'
+import MyTickets from './Pages/MyTickets/MyTickets'
+
 
 
 function App() {
@@ -26,7 +28,10 @@ const router = createBrowserRouter([
     path:"/admin",
     element:<Admin/>
   },
-
+  {
+    path:"/myTickets",
+    element:<MyTickets/>
+  },
 
 ])
 
