@@ -8,17 +8,21 @@ import img from '../../assets/uploads/1715336177895fernando-alvarez-rodriguez-M7
 import Checkout from '../Checkout/Checkout'
 import Navbar from '../Navbar/Navbar'
 
-const Banner = () => {
+const Banner = ({searchText}) => {
+  console.log(searchText);
 
-const {data} =  useFetch(`event/allEvents`)
+const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText}`)
 const [openWindow,setopenWindow]   = useState(false)
 const [openTickets,setopenTickets]   = useState(false)
-
-
 const [page, setPage] = useState(1)
 const [selectedEventId, setSelectedEventId] = useState()
 
-console.log(data);
+
+useEffect(()=>{
+ refetchData()
+},[searchText])
+
+
 
 //function for indicate pagination
 function selectedPage(selectedPage) {

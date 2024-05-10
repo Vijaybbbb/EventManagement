@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { axiosRequest } from '../../../Utils/axiosRequest'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { storeUser } from '../../Redux/loginSlice'
 
-const Navbar = () => {
+const Navbar = ({setSearchText}) => {
 
   const userDetails = useSelector(state => state.userDetails)
-  
+ 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -20,6 +20,11 @@ function handleLogout(e){
              }).catch(err=>console.log(err))
 }
 
+function getSearchText(e){
+       e.preventDefault()
+       setSearchText(e.target.value)
+
+}
 
   return (
          <div>
@@ -34,7 +39,7 @@ function handleLogout(e){
 
                               <div id="input-wrapper__nav">
                                      <i className="fas fa-search"></i>
-                                     <input id="search-box" type="text" name="search" placeholder="Search an event" />
+                                     <input id="search-box" type="text" name="search" placeholder="Search an event" onChange={getSearchText}/>
                               </div>
                               <div id="count-profile-wrapper">
                                      <div className='order-count-wrapper'>

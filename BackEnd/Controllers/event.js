@@ -19,8 +19,19 @@ const createEvent  = async(req,res,next) => {
 const allEvents  = async(req,res,next) => {
        
        try {
-           const data =  await Event.find()
-            res.status(200).json(data)
+
+              if(req.query.searchText){
+              
+                     const data = await Event.find({
+                            eventName: { $regex: new RegExp(req.query.searchText, "i") },
+                            })
+                            res.json(data)
+              }
+              else{
+                     const data =  await Event.find()
+                     res.status(200).json(data) 
+              }
+
        } catch (error) {
              next( createError(401,'Events fetching Failed'))
        }
