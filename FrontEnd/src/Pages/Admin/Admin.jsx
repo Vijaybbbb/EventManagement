@@ -15,6 +15,7 @@ const Admin = () => {
 
 
   return (
+    <div className='adminPage'>
     <div className="admin">
       <Headder/>
       <nav className="admin__nav">
@@ -65,6 +66,7 @@ const Admin = () => {
 
     
     
+    </div>
     </div>
   );
 };

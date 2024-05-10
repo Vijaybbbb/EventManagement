@@ -6,6 +6,10 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
+    eventType: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         required: true

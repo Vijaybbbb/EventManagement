@@ -4,16 +4,18 @@ import { DateRange } from 'react-date-range'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons'
 import { format } from 'date-fns'
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
-
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import {axiosRequest} from '../../../Utils/axiosRequest'
 
 
 const CreateEvent = () => {
 
        const [hotelData,setHotelData]  = useState()
-       const [images,setImages]  = useState([])
+       const [image,setImage]  = useState()
        const [openDate,setOpenDate] =  useState(false)
+       const [newDate,setEventDate] =  useState()
+
        const [date, setDate] = useState([
               {
                 startDate: new Date(),
@@ -25,23 +27,25 @@ const CreateEvent = () => {
        let getValue = (e) => {
               setHotelData({
                   ...hotelData,
-                  [e.target.name]: e.target.value
+                  [e.target.name]: e.target.value,
+                  date:date[0].startDate
               })
+              
+           console.log(hotelData);
       
-          }
+       }
 
        async function handleCreate(e) {
               e.preventDefault();
               const formData = new FormData();
+              console.log(image);
+              formData.append("image",image)
 
-              images.forEach((image) => {
-                     formData.append('images', image);
-              });
               for (const key in hotelData) {
                      formData.append(key, hotelData[key]);
-                   }
+              }
 
-              await axios.post(`${baseUrl}/hotels`, formData ,
+              axiosRequest.post(`/event/create`, formData ,
 
                      {
                             withCredentials: true,
@@ -49,7 +53,7 @@ const CreateEvent = () => {
                                    'Content-Type': 'multipart/form-data'
                             }
                      }).then((res) => {
-
+                            console.log(res);
                             setShow(false)
 
                      }).catch((error) => {
@@ -58,10 +62,9 @@ const CreateEvent = () => {
        }
 
           function onInputChange(e){
-            //  console.log(e.target.files);
-            const files = Array.from(e.target.files);
-            setImages([...images, ...files]);
-             
+             // console.log(e.target.files[0]);
+              const file = e.target.files[0]; // Get only the first file
+              setImage(file);
           }
 
 
@@ -81,7 +84,7 @@ const CreateEvent = () => {
                                                  <label htmlFor="" style={{ marginBottom: '10px' }}>Event Name</label>
                                                  <fieldset>
                                                         <input
-                                                               name='name'
+                                                               name='eventName'
                                                                type="text"
                                                                tabIndex="1"
                                                                required
@@ -93,7 +96,7 @@ const CreateEvent = () => {
                                                  <label htmlFor="" style={{ marginBottom: '10px' }}>Event Type</label>
                                                  <fieldset>
                                                         <select
-                                                               name='type'
+                                                               name='eventType'
                                                                tabIndex="1"
                                                                required
                                                                autoFocus
@@ -115,11 +118,12 @@ const CreateEvent = () => {
 
 
                                                  </fieldset>
+                                                 <br /><br />
 
                                                  <label htmlFor="">Time</label>
                                                  <fieldset>
                                                         <input
-                                                               name='address'
+                                                               name='time'
                                                                type="tel"
                                                                tabIndex="3"
                                                                required
@@ -131,7 +135,7 @@ const CreateEvent = () => {
                                                  <label htmlFor="">location</label>
                                                  <fieldset>
                                                         <input
-                                                               name='distance'
+                                                               name='location'
                                                                type="url"
                                                                tabIndex="4"
                                                                required
@@ -143,7 +147,7 @@ const CreateEvent = () => {
                                                  <label htmlFor="">organizer</label>
                                                  <fieldset>
                                                         <input
-                                                               name='cheapestPrice'
+                                                               name='organizer'
                                                                type="url"
                                                                tabIndex="4"
                                                                required
@@ -154,7 +158,7 @@ const CreateEvent = () => {
                                                  <label htmlFor="">attendees Limit</label>
                                                  <fieldset>
                                                         <input
-                                                               name='address'
+                                                               name='attendeesLimit'
                                                                type="tel"
                                                                tabIndex="3"
                                                                required
@@ -197,10 +201,10 @@ const CreateEvent = () => {
                      </main>
                      <div className="headerSearchItem">
                             <FontAwesomeIcon icon={faCalendarDays} className='headerIcon' />
-                            <span onClick={() => {
+                            <span name='date' onClick={() => {
                                    setOpenDate(!openDate)
                             }} className='headerSearchText'>
-                                   {`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(date[0].endDate, 'MM/dd/yyyy')} `}
+                                  <input name='date' type="text" value= {`${format(date[0].startDate, 'MM/dd/yyyy')} `} onChange={(e)=>{setEventDate(e.target.value);}}/>
                             </span>
                             {openDate && <DateRange
                                    editableDateInputs={true}
@@ -209,6 +213,7 @@ const CreateEvent = () => {
                                    ranges={date}
                                    className='date'
                                    minDate={new Date()}
+                                 
                             />}
                      </div>
 

@@ -160,3 +160,10 @@
        border: 1px solid #556fe7;
    }
    
+
+
+    .headerSearchItem{
+    position: absolute;
+    top: 330px;
+    left: 470px;
+   }

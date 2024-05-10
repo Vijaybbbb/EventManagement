@@ -1,6 +1,6 @@
 /* admin.css */
 
-.admin {
+     .adminPage .admin {
        --spacing: 1rem;
        display: flex;
        flex-wrap: wrap;
@@ -12,7 +12,7 @@
                              "footer footer";
      }
      
-     .admin__header {
+     .adminPage .admin__header {
        display: flex;
        flex-basis: 100%;
        grid-area: header;
@@ -22,13 +22,13 @@
        position: relative;
      }
      
-     .admin__nav {
+     .adminPage .admin__nav {
        flex: 0 0 var(--admin-nav-width);
        grid-area: nav;
        background-color: #313541;
      }
      
-     .admin__main {
+     .adminPage .admin__main {
        flex: 1;
        grid-area: main;
        padding: var(--spacing);
@@ -39,7 +39,7 @@
        width: 1300px;
      }
      
-     .admin__footer {
+     .adminPage .admin__footer {
        display: flex;
        grid-area: footer;
        flex-basis: 100%;
@@ -51,14 +51,14 @@
        background-color: #1d2127;
      }
      
-     .menu__link {
+     .adminPage .menu__link {
        display: block;
        padding: 1rem 2rem;
        color: #76808f;
        text-decoration: none;
      }
      
-     .card {
+     .adminPage .card {
        height: 100%;
        padding: 1rem;
        font-size: 2rem;
@@ -68,7 +68,7 @@
        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
      }
      
-     .btn {
+     .adminPage .btn {
        display: inline-block;
        border-radius: 5em;
        border: 0;
@@ -76,12 +76,12 @@
        white-space: nowrap;
      }
      
-     .btn--primary {
+     .adminPage .btn--primary {
        color: #fff;
        background-color: #56bf89;
      }
      
-     .ticker {
+     .adminPage .ticker {
        list-style-type: none;
        padding: 0;
        margin: 0;
@@ -89,7 +89,7 @@
        flex-wrap: wrap;
      }
      
-     .ticker__item {
+     .adminPage .ticker__item {
        margin-right: 1rem;
      }
      
