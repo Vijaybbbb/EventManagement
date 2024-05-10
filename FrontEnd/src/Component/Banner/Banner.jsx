@@ -4,7 +4,7 @@ import useFetch from '../../Hooks/fetchData'
 import Ticket from '../Ticket/Ticket'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
-import img from '../../../src/assets/images/img.jpg'
+import img from '../../assets/uploads/1715336177895fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg'
 import Checkout from '../Checkout/Checkout'
 import Navbar from '../Navbar/Navbar'
 
@@ -18,7 +18,7 @@ const [openTickets,setopenTickets]   = useState(false)
 const [page, setPage] = useState(1)
 const [selectedEventId, setSelectedEventId] = useState()
 
-
+console.log(data);
 
 //function for indicate pagination
 function selectedPage(selectedPage) {
@@ -30,6 +30,16 @@ function selectedPage(selectedPage) {
     setPage(selectedPage)
     window.scrollTo(0, 0);
 }
+
+function convertDate(date) {
+  const newDate = new Date(date);
+  // Format the date with month name and no time
+  const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  const formattedDate = newDate.toLocaleString('en-US', options);
+  return formattedDate;
+}
+
+
 
   return (
     <div>
@@ -44,21 +54,21 @@ function selectedPage(selectedPage) {
           {data && data.slice((page - 1) * 4, page * 4).map(event => (
             <div key={event.id} className="upcoming-event">
               <div className="left">
-                <div className="date">{event.date}</div>
+                <div className="date">{convertDate(event.date)}</div>
                 <div className="time">
-                {event.date}
+                {event.time}
                 </div>
                 <div className="location">
-                {event.date}
+                {event.location}
                 </div>
               </div>
-
+             
 
 
               <div className="middle">
                 <div style={{display:'flex',gap:10}}>
                 <div>
-                  <img src={img} alt="" className='imageInfo' />
+                  <img src={`../src/assets/uploads/${event.images}`} alt="" className='imageInfo' />
 
                 </div>
                 <div>
@@ -78,7 +88,7 @@ function selectedPage(selectedPage) {
                   <span className="label"><i className="fa fa-clock-o" aria-hidden="true"></i></span>
                   <span className="content">{event.Duration}</span>
                 </div>
-                <div className="offers"> {event.date}</div>
+                <div className="offers"></div>
                 <div className="registration">
                <button onClick={(e)=>{
                 e.preventDefault()

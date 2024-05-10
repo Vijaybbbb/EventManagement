@@ -34,11 +34,11 @@ const eventSchema = new Schema({
        type: Number,
        required: true
    },
-   images:[
+   images:
     {
            type:String  
-    }
-    ],
+    },
+    
     bookedUsers: [{
         type: String
     }]
