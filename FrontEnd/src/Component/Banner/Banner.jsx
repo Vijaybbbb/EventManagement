@@ -3,19 +3,18 @@ import './Banner.css'
 import useFetch from '../../Hooks/fetchData'
 import Ticket from '../Ticket/Ticket'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
-import img from '../../assets/uploads/1715336177895fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import Checkout from '../Checkout/Checkout'
-import Navbar from '../Navbar/Navbar'
 
-const Banner = ({searchText}) => {
-  console.log(searchText);
 
-const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText}`)
+const Banner = ({searchText,sortOption}) => {
+  console.log(sortOption);
+
+const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText || ''}&sortOption=${sortOption || ''}`)
 const [openWindow,setopenWindow]   = useState(false)
 const [openTickets,setopenTickets]   = useState(false)
 const [page, setPage] = useState(1)
-const [selectedEventId, setSelectedEventId] = useState()
+const [selectedEventId, setSelectedEventId] = useState()    
 
 
 useEffect(()=>{

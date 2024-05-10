@@ -3,8 +3,10 @@ import { axiosRequest } from '../../../Utils/axiosRequest'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { storeUser } from '../../Redux/loginSlice'
+import { faArrowUpWideShort, faFilterCircleDollar, faFilterCircleXmark, faSort, faSortAmountDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Navbar = ({setSearchText}) => {
+const Navbar = ({setSearchText,setSortOption}) => {
 
   const userDetails = useSelector(state => state.userDetails)
  
@@ -41,14 +43,56 @@ function getSearchText(e){
                                      <i className="fas fa-search"></i>
                                      <input id="search-box" type="text" name="search" placeholder="Search an event" onChange={getSearchText}/>
                               </div>
-                              <div id="count-profile-wrapper">
-                                     <div className='order-count-wrapper'>
-                                            <p className="orders-count">1</p>
-                                            <i className="fas fa-shopping-cart"></i>
+                              <div id="count-profile-wrapper" style={{gap:"25px"}}>
+                                     
+                                     <div>
+                                            
+                                            <div className="option-list">
+                                            <FontAwesomeIcon icon={faSortAmountDown} />
+
+                                                   <select
+                                                          name=''
+                                                          id="eventType"
+                                                          tabIndex="1"
+                                                          required
+                                                          autoFocus
+                                                          onChange={(e) => {
+                                                               setSortOption(e.target.value)
+                                                          }}
+                                                   >
+                                                          <option value="near">Nearest Date</option>
+                                                          <option value="far">Farest Date</option>
+                                                          
+                                                          {/* Add more options as needed */}
+                                                   </select>
+                                            </div>
                                      </div>
-                                     <div className='profile-wrapper'>
-                                            <div id="profile-back-screen"></div>
+                                     <div>
+                                            
+                                            <div className="option-list">
+                                            <FontAwesomeIcon icon={faFilterCircleDollar} />
+
+                                                   <select
+                                                          name=''
+                                                          id="eventType"
+                                                          tabIndex="1"
+                                                          required
+                                                          autoFocus
+                                                          onChange={(e) => {
+                                                                 // Handle selection change here
+                                                          }}
+                                                   >
+                                                          <option value="">Select Event Type</option>
+                                                          <option value="Hotel">Science</option>
+                                                          <option value="Apartment">Technology</option>
+                                                          <option value="Resort">Money & Economy</option>
+                                                          <option value="Villa">Foods exhibition</option>
+                                                          <option value="Cabin">Education</option>
+                                                          {/* Add more options as needed */}
+                                                   </select>
+                                            </div>
                                      </div>
+
                               </div>
                        </nav>
                 </header>

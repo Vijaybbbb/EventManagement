@@ -20,20 +20,39 @@ const allEvents  = async(req,res,next) => {
        
        try {
 
-              if(req.query.searchText){
-              
+              if(req.query.searchText !== ''){
+                     if(req.query.sortOption  !== '' && req.query.sortOption=='near'){
+                            const data = await Event.find({
+                                   eventName: { $regex: new RegExp(req.query.searchText, "i") },
+                                   }).sort({ date: 1 })
+                            res.status(200).json(data) 
+                     }if(req.query.sortOption  !== '' && req.query.sortOption=='far'){
+                            const data = await Event.find({
+                                   eventName: { $regex: new RegExp(req.query.searchText, "i") },
+                                   }).sort({ date: -1 })
+                            res.status(200).json(data) 
+                     }
                      const data = await Event.find({
                             eventName: { $regex: new RegExp(req.query.searchText, "i") },
                             })
                             res.json(data)
               }
               else{
+                     if(req.query.sortOption  !== '' && req.query.sortOption=='near'){
+                            const data =  await Event.find().sort({ date: 1 })
+                            res.status(200).json(data) 
+                     }
+                     if(req.query.sortOption  !== '' && req.query.sortOption=='far'){
+                            const data =  await Event.find().sort({ date: -1 })
+                            res.status(200).json(data) 
+                     }
+
                      const data =  await Event.find()
                      res.status(200).json(data) 
               }
 
        } catch (error) {
-             next( createError(401,'Events fetching Failed'))
+             next( createError(401,'Events fetching Failed')) 
        }
 }
 
