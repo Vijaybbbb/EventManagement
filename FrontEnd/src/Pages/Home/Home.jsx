@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
 import Footer from '../../Component/Footer/Footer'
 import Navbar from '../../Component/Navbar/Navbar'
@@ -11,10 +11,12 @@ const Home = () => {
   const [access,setAccess] = useState(false)
 
   const userDetails = useSelector(state => state.userDetails)
-console.log(userDetails.userDetails);
-  if(userDetails?.userId){
-    setAccess(true)
-  }
+
+useEffect(()=>{
+ if( userDetails.userId){
+  setAccess(true)
+ }
+},[ userDetails.userId])
 
   const [searchText,setSearchText] = useState()
   const [sortOption,setSortOption] = useState()

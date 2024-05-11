@@ -5,9 +5,10 @@ import Ticket from '../Ticket/Ticket'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import Checkout from '../Checkout/Checkout'
+import { useNavigate } from 'react-router'
 
 
-const Banner = ({searchText,sortOption,filterOption}) => {
+const Banner = ({access,searchText,sortOption,filterOption}) => {
   console.log(sortOption);
 
 const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText || ''}&sortOption=${sortOption || ''}&filterOption=${filterOption || ''}`)
@@ -15,6 +16,7 @@ const [openWindow,setopenWindow]   = useState(false)
 const [openTickets,setopenTickets]   = useState(false)
 const [page, setPage] = useState(1)
 const [selectedEventId, setSelectedEventId] = useState()    
+const navigate = useNavigate()
 
 
 useEffect(()=>{
@@ -95,9 +97,14 @@ function convertDate(date) {
                 <div className="registration">
                <button onClick={(e)=>{
                 e.preventDefault()
-                setopenWindow(true)
+                if(access){
+                  setopenWindow(true)
                 setopenTickets(true)
                 setSelectedEventId(event._id)
+                }
+                else{
+                  navigate('/login')
+                }
              
                }}>Book Now</button>
                   
