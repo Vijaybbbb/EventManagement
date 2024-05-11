@@ -3,10 +3,10 @@ import { axiosRequest } from '../../../Utils/axiosRequest'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { storeUser } from '../../Redux/loginSlice'
-import { faArrowUpWideShort, faFilterCircleDollar, faFilterCircleXmark, faSort, faSortAmountDown } from '@fortawesome/free-solid-svg-icons'
+import { faFilterCircleDollar, faSort, faSortAmountDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Navbar = ({setSearchText,setSortOption,setFilterOption,ticketPage}) => {
+const Navbar = ({access,setSearchText,setSortOption,setFilterOption,ticketPage}) => {
 
   const userDetails = useSelector(state => state.userDetails)
  
@@ -33,13 +33,37 @@ function getSearchText(e){
                 <header>
                        <nav className='nav-top'>
                               <div className='headings--wrapper__nav'>
-                                     <div id='logo'><span>Events</span>Zo</div>
-                                     <div className='section-title-in-nav'  onClick={(e)=>{
-                                          e.preventDefault()
-                                          navigate('/myTickets')}}
-                                          ><a href="#Clothing">My Tickets</a></div>
-                                   
-                                     <div className='section-title-in-nav'><a href="#Accessories" onClick={handleLogout}>log out</a></div>
+                                     <div id='logo' onclick={(e) => {
+                                            e.preventDefault()
+                                            navigate('/')
+                                     }}>
+                                            <span >Events</span>Zo</div>
+                                     {
+                                            access ? (
+                                                   <div style={{display:'flex'}}>
+                                                          <div className='section-title-in-nav' onClick={(e) => {
+                                                                 e.preventDefault()
+                                                                 navigate('/myTickets')
+                                                          }}
+                                                          ><a href="#Clothing">My Tickets</a></div>
+
+                                                          <div className='section-title-in-nav'><a href="#Accessories" onClick={handleLogout}>log out</a></div>
+                                                   </div>
+                                            ):(
+                                                 <div style={{display:'flex'}}>
+                                                          <div className='section-title-in-nav' onClick={(e) => {
+                                                                 e.preventDefault()
+                                                                 navigate('/login')
+                                                          }}
+                                                          ><a href="#Clothing">Login</a></div>
+
+                                                          <div className='section-title-in-nav'><a href="#Accessories" onClick={(e) => {
+                                                                 e.preventDefault()
+                                                                 navigate('/signup')
+                                                          }} >Create Account</a></div>
+                                                   </div>
+                                            )
+                                     }
                               </div>
                             
                               <div id="input-wrapper__nav">

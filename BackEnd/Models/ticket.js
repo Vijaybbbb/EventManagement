@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
 // Ticket Schema
+
 const ticketSchema = new Schema({
     eventId: {
         type: Schema.Types.ObjectId,
         ref: 'event',
-        required: true
+        required: true,  
     },
     userId: {
         type: Schema.Types.ObjectId,
@@ -42,6 +44,8 @@ const ticketSchema = new Schema({
     
     }
 });
+
+
 
 const Ticket = mongoose.model('ticket', ticketSchema);
 
