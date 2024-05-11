@@ -164,7 +164,7 @@ const verifyPayment = async (req, res, next) => {
 
 
 //set payment status to each new bookings
-async function PaymentStatus(ticketId, userId,) {
+async function PaymentStatus(ticketId, userId) {
 
        try {
 
@@ -188,6 +188,18 @@ async function PaymentStatus(ticketId, userId,) {
 
 
 
+async function allTickets(req,res,next) {
+
+       try {
+
+              const result = await User.findById(req.query.id).populate('bookedTickets')            
+              res.status(200).json(result.bookedTickets)    
+
+       } catch (error) { 
+              console.log(error); 
+       }
+}
+
 
 
 
@@ -198,5 +210,6 @@ async function PaymentStatus(ticketId, userId,) {
        register,
        login,
        checkout,
-       verifyPayment
+       verifyPayment,
+       allTickets
    }

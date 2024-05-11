@@ -26,7 +26,7 @@ const Home = () => {
                     
                 </div>
             </section>
-            <Banner searchText={searchText} sortOption={sortOption}/>
+            <Banner searchText={searchText} sortOption={sortOption} filterOption={filterOption}/>
             <Footer/>
             
         </div>

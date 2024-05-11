@@ -13,6 +13,10 @@ const ticketSchema = new Schema({
         ref: 'user',
         required: true
     },
+    eventName: {
+        type: String,
+        required: true
+    },
     ticketType: {
         type: String,
         required: true

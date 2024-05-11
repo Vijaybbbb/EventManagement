@@ -7,10 +7,10 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import Checkout from '../Checkout/Checkout'
 
 
-const Banner = ({searchText,sortOption}) => {
+const Banner = ({searchText,sortOption,filterOption}) => {
   console.log(sortOption);
 
-const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText || ''}&sortOption=${sortOption || ''}`)
+const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText || ''}&sortOption=${sortOption || ''}&filterOption=${filterOption || ''}`)
 const [openWindow,setopenWindow]   = useState(false)
 const [openTickets,setopenTickets]   = useState(false)
 const [page, setPage] = useState(1)

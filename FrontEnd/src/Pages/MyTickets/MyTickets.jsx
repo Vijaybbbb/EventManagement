@@ -1,11 +1,20 @@
 import React from 'react'
 import './MyTickets.css'
 import Navbar from '../../Component/Navbar/Navbar'
+import useFetch from '../../Hooks/fetchData'
+import { useSelector } from 'react-redux'
 
 const MyTickets = () => {
+       const userDetails = useSelector(state => state.userDetails)
+
+    const {data,refetchData} =  useFetch(`user/allTickets?id=${userDetails?.userId}`)
+console.log(data);
+
+
+
        return (
               <div>
-              <Navbar/>
+              <Navbar ticketPage={true}/>
               <div id="multi-ticket">
                      <div id="multi-ticket-layout">
                             <div className="mobile-ticket__page-header">
@@ -21,13 +30,17 @@ const MyTickets = () => {
                                                         </svg>
                                                  </i>
                                           </a>
-                                   </div>
-                            </div>
-                            <div className="mobile-ticket__page">
+                                       </div>
+                                     </div>
+                                      < div className="mobile-ticket__page">
 
 
-                                   <div className="mobile-ticket__ticket">
-                                          <div className="card">
+                                       <div className="mobile-ticket__ticket">
+                                          {
+                                             data && data.map((ticket)=>(
+
+                                             
+                                             <div className="card">
                                                  <div className="card__header ticket__count">
                                                         Ticket <span className="ticket-count--current">1</span> of 6                                </div>
 
@@ -38,11 +51,11 @@ const MyTickets = () => {
                                                                              <div className="mobile-ticket__name">Fake Nameski</div>
                                                                       </div>
                                                                       <div className="mobile-ticket__level-container">
-                                                                             <div className="mobile-ticket__price-level">General Admission</div>
+                                                                             <div className="mobile-ticket__price-level">{ticket.ticketType}      </div>
                                                                              <div className="mobile-ticket__level-info">
                                                                                     <div className="mobile-ticket__face-value">
-                                                                                           <span className="desktop-only">Face Value:</span>
-                                                                                           $1.00                                                </div>
+                                                                                           <span className="desktop-only">Price:</span>
+                                                                                           {ticket.price}                                              </div>
                                                                                     <div className="mobile-ticket__number ticket-number--mobile">3957556896</div>
                                                                              </div>
                                                                       </div>
@@ -57,7 +70,7 @@ const MyTickets = () => {
                                                         </div>
                                                         <div className="mobile-ticket__ticket-images">
                                                                <div className="card__content">
-                                                                      <div className="mobile-ticket__number ticket-number--desktop">3957556896</div>
+                                                                      <div className="mobile-ticket__number ticket-number--desktop">{ticket._id}</div>
                                                                       <div className="mobile-ticket__barcode">
                                                                              <div className="mobile-ticket__barcode-image">
                                                                                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" />
@@ -95,6 +108,8 @@ const MyTickets = () => {
                                                         </div>
                                                  </div>
                                           </div>
+                                          ))    
+                                   }
                                    </div>
                             </div>
                      </div>

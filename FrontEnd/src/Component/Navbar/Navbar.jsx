@@ -6,7 +6,7 @@ import { storeUser } from '../../Redux/loginSlice'
 import { faArrowUpWideShort, faFilterCircleDollar, faFilterCircleXmark, faSort, faSortAmountDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Navbar = ({setSearchText,setSortOption}) => {
+const Navbar = ({setSearchText,setSortOption,setFilterOption,ticketPage}) => {
 
   const userDetails = useSelector(state => state.userDetails)
  
@@ -38,15 +38,21 @@ function getSearchText(e){
                                           e.preventDefault()
                                           navigate('/myTickets')}}
                                           ><a href="#Clothing">My Tickets</a></div>
-                                     <div className='section-title-in-nav'><a href="#Accessories">Notification</a></div>
+                                   
                                      <div className='section-title-in-nav'><a href="#Accessories" onClick={handleLogout}>log out</a></div>
                               </div>
-
+                            
                               <div id="input-wrapper__nav">
                                      <i className="fas fa-search"></i>
-                                     <input id="search-box" type="text" name="search" placeholder="Search an event" onChange={getSearchText}/>
+                                  {
+                                   !ticketPage && (
+                                          <input id="search-box" type="text" name="search" placeholder="Search an event" onChange={getSearchText}/>
+                                   )
+                                  }
                               </div>
-                              <div id="count-profile-wrapper" style={{gap:"25px"}}>
+                              {
+                                   !ticketPage && (
+                                <div id="count-profile-wrapper" style={{gap:"25px"}}>
                                      
                                      <div>
                                             
@@ -82,21 +88,25 @@ function getSearchText(e){
                                                           required
                                                           autoFocus
                                                           onChange={(e) => {
-                                                                 // Handle selection change here
+                                                               setFilterOption(e.target.value)
                                                           }}
                                                    >
                                                           <option value="">Select Event Type</option>
-                                                          <option value="Hotel">Science</option>
-                                                          <option value="Apartment">Technology</option>
-                                                          <option value="Resort">Money & Economy</option>
-                                                          <option value="Villa">Foods exhibition</option>
-                                                          <option value="Cabin">Education</option>
+                                                          <option value="Science">Science</option>
+                                                          <option value="Technology">Technology</option>
+                                                          <option value="Money">Money & Economy</option>
+                                                          <option value="Foods">Foods exhibition</option>
+                                                          <option value="Education">Education</option>
+                                                          <option value={null}>Default</option>
+
                                                           {/* Add more options as needed */}
                                                    </select>
                                             </div>
                                      </div>
 
+                              
                               </div>
+                                   )}
                        </nav>
                 </header>
          </div>
