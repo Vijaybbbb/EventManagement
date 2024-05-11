@@ -79,6 +79,9 @@ const checkout = async(req,res,next) =>{
               //create ticket for event 
               const obj = {
                      eventId:new mongoose.Types.ObjectId(data._id),
+                     eventName:data.eventName,
+                     des:data.description,
+                     organizer:data.organizer,
                      userId:new mongoose.Types.ObjectId(userId),
                      ticketType:ticket.ticket.type,
                      price:total,
