@@ -5,10 +5,11 @@ import React, { useState } from 'react';
 import { axiosRequest } from '../../../Utils/axiosRequest';
 import useRazorpay from "react-razorpay";
 
-const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
+
+
+const Checkout = ({selectedEventId,setopenWindow,refetchData,onPaymentSucces}) => {
 
        const {data} =  useFetch(`event/${selectedEventId}`)
-       //console.log(data);
        const ticket = useSelector(state => state.ticketDetails)
        const {userId} = useSelector(state => state.userDetails)
        const [total,setTotal] = useState(Number(ticket?.ticket?.price) + 25.50)
@@ -40,10 +41,11 @@ const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
           eventId,eventId
        
          }, { withCredentials: true }).then((res) => {
-         
-            refetchData()
+            onPaymentSucces()
+          
             
        }).catch((err) => {
+           
             console.log(err);
        })
        }
@@ -72,7 +74,7 @@ const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
                       },
                       prefill: {
                         name: "vijay ram ",
-                        email: "youremail@example.com",
+                        email: "Eventszo@example.com",
                         contact: "9999999999",
                       },
                       notes: {
@@ -87,7 +89,7 @@ const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
                     //failed transaction
                     rzp1.on("payment.failed", function (response) {
             
-                      console.log('failed');
+                        toast.error("Booking Failed!");
             
                     });
                   
@@ -105,17 +107,19 @@ const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
 
 
     return (
+        <div>
        <div className='checkoutForm'>
+         
         <div className='container'>
             <div className='window'>
                 <div className='order-info'>
                     <div className='order-info-content'>
                         <h2>Ticket Details</h2>
                         <div className='line'></div>
-                        <table className='order-table'>
+                        <table className='order-table'>   
                             <tbody>
                                 <tr>
-                                    <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' className='full-width' alt='Nike Shoes' /></td>
+                                    <td><img src={`../src/assets/uploads/${data.images}`} className='full-width' alt='Nike Shoes' /></td>
                                     <td>
                                         <br /><span className='thin'>{ticket?.ticket?.type}</span>
                                         <br />{data?.eventName}<br /><span className='thin small'>Color: Grey/Orange, Size: 10.5<br /><br /></span>
@@ -183,6 +187,8 @@ const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
                     </div>
                 </div>
             </div>
+        </div>
+        
         </div>
         </div>
     );

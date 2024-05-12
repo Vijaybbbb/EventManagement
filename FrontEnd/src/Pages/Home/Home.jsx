@@ -4,6 +4,7 @@ import Footer from '../../Component/Footer/Footer'
 import Navbar from '../../Component/Navbar/Navbar'
 import Banner from '../../Component/Banner/Banner'
 import { useSelector } from 'react-redux'
+import Notify from '../../Component/Notify/Notify'
 
 
 
@@ -39,7 +40,7 @@ useEffect(()=>{
             </section>
             <Banner access={access} searchText={searchText} sortOption={sortOption} filterOption={filterOption}/>
             <Footer/>
-            
+            <Notify/>
         </div>
     </div>
   )

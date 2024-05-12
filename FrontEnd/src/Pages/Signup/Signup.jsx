@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Signup.css'
 import { useNavigate } from 'react-router-dom';
 import {axiosRequest} from '../../../Utils/axiosRequest.js';
+import { ToastContainer, toast } from 'react-toastify';
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -27,7 +28,10 @@ const SignUp = () => {
         e.preventDefault(); // Prevent default form submission
         await axiosRequest.post('/user/register', userData).then((response) => {
             setSuccessMessage(response.data.message)
-            navigate('/login')
+            toast.success("Login successfull!");
+            setTimeout(()=>{
+                navigate('/login')
+            },2000)
          
         }).catch(err =>setErrorMessage(err.response.data.message))
 
@@ -37,6 +41,7 @@ const SignUp = () => {
 
     return (
       <div className='loginPage'>
+         <ToastContainer />
         <main className="mainLogin">
             <div className="containerLogin">
                 <section className="wrapperLogin">

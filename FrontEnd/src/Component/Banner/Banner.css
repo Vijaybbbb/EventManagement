@@ -465,3 +465,12 @@ body{
         width: 200px;
     }
 
+    .bookingbtn{
+        background-color: #EB4E31;
+        border: none;
+        color: white;
+        cursor: pointer;
+        width: 150px;
+        height: 50px;
+        border-radius: 5px;
+    }

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import Checkout from '../Checkout/Checkout'
 import { useNavigate } from 'react-router'
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const Banner = ({access,searchText,sortOption,filterOption}) => {
   console.log(sortOption);
@@ -44,12 +44,16 @@ function convertDate(date) {
   return formattedDate;
 }
 
+function onPaymentSucces(){
+  toast.success("Booking successfull!")
+}
 
 
   return (
     <div>
-     
+    
     <div className='banner'>
+    <ToastContainer />
         <div className="arlo">
         <div className="arlo-page-title arlo-font-primary">
           <h2>Demos - Upcoming Events - List 1</h2>
@@ -112,11 +116,12 @@ function convertDate(date) {
                   <span className="label"><i className="fa fa-clock-o" aria-hidden="true"></i></span>
                   <span className="content">{event.Duration}</span>
                 </div>
+                <div className="offers">Starting from <b>299</b></div><br />
                 <div className="offers"></div>
                 <div className="registration">
                     {
                       event.bookedUsers.length < event.attendeesLimit ? (
-                        <button onClick={(e)=>{
+                        <button className='bookingbtn' onClick={(e)=>{
                           e.preventDefault()
                           if(access){
                             setopenWindow(true)
@@ -129,7 +134,7 @@ function convertDate(date) {
                        
                          }}>Book Now</button>
                       ):(
-                        <button>Ticket not Avilable</button>
+                        <button className='bookingbtn'>Ticket not Avilable</button>
                       )
                     }
                   
@@ -161,7 +166,12 @@ function convertDate(date) {
                     <FontAwesomeIcon icon={faCircleXmark} className="rClose2" onClick={() =>
                                                                        setopenWindow(false)
                                                                        } />
-                    <Checkout refetchData={refetchData} selectedEventId={selectedEventId} setopenWindow={setopenWindow}/>
+                    <Checkout 
+                    refetchData={refetchData}
+                     selectedEventId={selectedEventId} 
+                     setopenWindow={setopenWindow}
+                     onPaymentSucces={onPaymentSucces}
+                     />
                   </div>
                 )
               }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {axiosRequest} from '../../../Utils/axiosRequest.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeUser } from '../../Redux/loginSlice.js';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -43,7 +43,11 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
             console.log(response);
             setSuccessMessage(response.data.message)
             dispatch(storeUser(response.data._id))
-            navigate('/')
+            toast.success("Login successfull!");
+            setTimeout(()=>{
+                navigate('/')
+            },2000)
+
            //setIsAuthenticated(true)
             //localStorage.setItem('isAuthenticated',true);
         }).catch(err => setErrorMessage(err.response.data.message))
@@ -51,6 +55,7 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
 
     return (
         <div className='loginPage'>
+             <ToastContainer />
         <main className="mainLogin">
             <div className="containerLogin">
                 <section className="wrapperLogin">

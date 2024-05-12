@@ -206,12 +206,12 @@ async function allTickets(req,res,next) {
        try {
 
               const result = await User.findById(req.query.id).populate('bookedTickets')            
-              res.status(200).json(result.bookedTickets)    
+              res.status(200).json(result.bookedTickets.reverse())    
 
        } catch (error) { 
               console.log(error); 
-       }
-}
+       } 
+}  
 
 
 

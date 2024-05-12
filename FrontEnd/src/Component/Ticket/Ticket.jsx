@@ -7,7 +7,7 @@ import { storeOrder } from '../../Redux/orderSlice';
 
 // Reusable Pricing Table Component
        
-const PricingTable = ({ title, price, features, selectedEventId,setopenTickets}) => {
+const PricingTable = ({ title, price, features, selectedEventId,setopenTickets,color}) => {
 
   const [ticketData,setTicketData]  = useState({
     type:title,
@@ -34,7 +34,7 @@ function handleBuyNow(e){
           <h4 className="title">{title}</h4>
         </div>
         <div className="content">
-          <div className="price">
+          <div className="price" style={{background:color}}>
             <h1>{price}</h1>
           </div>
           <ul>
@@ -71,6 +71,7 @@ const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
           <div className='ticket'>
        <div className="wrapper">
         <PricingTable
+          color='#cd7f32 '
           title="Basic"
           price="299"
           features={[
@@ -87,6 +88,7 @@ const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
         
         />
         <PricingTable
+         color='#e5e4e2'
           title="Standard"
           price="499"
           features={[
@@ -103,6 +105,7 @@ const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
          
         />
         <PricingTable
+         color='#ffd700 '
           title="Premium"
           price="999"
           features={[
