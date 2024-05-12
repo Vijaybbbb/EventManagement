@@ -3,6 +3,7 @@ import './MyTickets.css'
 import Navbar from '../../Component/Navbar/Navbar'
 import useFetch from '../../Hooks/fetchData'
 import { useSelector } from 'react-redux'
+import Footer from '../../Component/Footer/Footer'
 
 const MyTickets = () => {
        const userDetails = useSelector(state => state.userDetails)
@@ -128,7 +129,7 @@ const MyTickets = () => {
                                         </div>
                                  </div>
                           </div>
-            
+                                               <Footer/>
                           </div>
                      ):(
                             <div></div>

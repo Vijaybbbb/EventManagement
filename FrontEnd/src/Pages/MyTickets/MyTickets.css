@@ -18,7 +18,7 @@ img { max-width: 100%; }
 #multi-ticket{
        margin-top: 30px;
        background: #2874B7;
-       min-height: 5000px
+       
 }
 .mobile-ticket__page-container, .mobile-ticket__page { margin: 0 auto; min-width: 300px; max-width: 881px; }
 
