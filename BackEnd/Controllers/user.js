@@ -1,4 +1,6 @@
 const User = require('../Models/user.js')
+const Event = require('../Models/event.js')
+
 const bcrypt = require('bcrypt')
 const jwt  = require('jsonwebtoken');
 const { createError } = require('../Utils/error.js');
@@ -112,7 +114,8 @@ const checkout = async(req,res,next) =>{
                                           name: data.eventName,
                                           amount: amount,
                                           order: order,
-                                          lastDataId:lastData
+                                          lastDataId:lastData,
+                                          eventId:data._id
                                    })
                             } else {
                                    console.log(err);
@@ -130,14 +133,14 @@ const checkout = async(req,res,next) =>{
 
 //verify payment
 const verifyPayment = async (req, res, next) => {
-       const { response, ticketId, userId } = req.body
+       const { response, ticketId, userId ,eventId} = req.body
 
        const payment_id = response.razorpay_payment_id;
        const order_id = response.razorpay_order_id
        const signature = response.razorpay_signature;
 
        const user  = await User.findById(userId)
-       const ticket  = await User.findById(ticketId)
+       const ticket  = await Ticket.findById(ticketId)
 
 
 
@@ -150,6 +153,12 @@ const verifyPayment = async (req, res, next) => {
 
               if (digest == signature) {
                      console.log("payment successs",);
+
+                     await Event.findByIdAndUpdate(eventId,{
+                            $addToSet:{
+                                   bookedUsers:userId
+                            }
+                     })
 
                      PaymentStatus(ticketId, userId).then((data)=>{
                           sendToEmail(user.email,ticket)

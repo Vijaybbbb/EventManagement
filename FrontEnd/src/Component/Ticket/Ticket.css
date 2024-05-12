@@ -31,7 +31,7 @@
        transition: all 0.5s ease;
    }
    .ticket .pricing-table:hover .head {
-       border-bottom: 1px solid #8E2DE2;
+       border-bottom: 1px solid #343137;
    }
    .ticket .pricing-table .head .title {
        margin-bottom: 20px;
@@ -39,7 +39,7 @@
        font-weight: 700;
    }
    .ticket .pricing-table .content .price {
-       background: linear-gradient(to right, #8E2DE2 0%, #4A00E0 100%);
+       background: yellow;
        width: 90px;
        height: 90px;
        margin: auto;

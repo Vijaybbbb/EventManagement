@@ -74,10 +74,10 @@ const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
           title="Basic"
           price="299"
           features={[
-            "Free Cancelation",
-            "kfnglkdgl",
-            "Month Subscription",
-            ".",
+            "Entry Access",
+            "Standard Seating",
+            "Event Materials",
+            "Limited Benefits",
             ". ",
             ". ",
           ]}
@@ -90,12 +90,12 @@ const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
           title="Standard"
           price="499"
           features={[
-            "5 GB Ram",
-            "40GB SSD Cloud Storage",
-            "Month Subscription",
-            "Responsive Framework",
-            "Monthly Billing Software",
-            "1 Free Website"
+            "Enhanced Entry Access",
+            "Better Seating",
+            "Event Swag:",
+            "Networking Opportunities",
+            "Food and Beverage Vouchers",
+            "Limited Premium Features"
           ]}
           selectedEventId={selectedEventId}
           setopenWindow={setopenWindow}
@@ -106,12 +106,12 @@ const Ticket = ({ selectedEventId,setopenWindow,setopenTickets}) => {
           title="Premium"
           price="999"
           features={[
-            "5 GB Ram",
-            "40GB SSD Cloud Storage",
-            "Month Subscription",
-            "Responsive Framework",
-            "Monthly Billing Software",
-            "1 Free Website"
+            "VIP Entry Access:",
+            "Best Seating",
+            "VIP Amenities",
+            "Exclusive Event Swag",
+            "VIP Parking",
+            "Dedicated Support"
           ]}
           selectedEventId={selectedEventId}
           setopenWindow={setopenWindow}

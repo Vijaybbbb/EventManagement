@@ -23,16 +23,16 @@ const htmlContent = (email,ticket) =>{
         Hey, <br><br>We're thrilled to inform you that your ticket reservation has been successfully confirmed! Get ready for an unforgettable experience ahead.
       </p>
       <p>
-        Event Name : ${ticket.eventName}
+        Event Name : ${ticket?.eventName}
       </p>
       <p>
-         Organiser : ${ticket.organizer}
+         Organiser : ${ticket?.organizer}
       </p>
       <p>
-        Ticket Price : ${ticket.price}
+        Ticket Price : ${ticket?.price}
       </p>
       <p>
-      Ticket Tyoe: ${ticket.ticketType}
+      Ticket Tyoe: ${ticket?.ticketType}
        </p>
     
       <button class="text-white text-sm tracking-wide bg-red rounded w-full my-8 p-4 " style="color: #ffffff; font-size: 0.875rem; letter-spacing: 0.025em; background-color: #e53e3e; border-radius: 0.375rem; width: 100%; margin-top: 2rem; padding-top: 1rem; padding-right: 2rem; padding-bottom: 1rem; padding-left: 2rem;">TICKET CONFIRMED</button>

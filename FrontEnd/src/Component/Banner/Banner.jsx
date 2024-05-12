@@ -77,10 +77,29 @@ function convertDate(date) {
 
                 </div>
                 <div>
-                  <h3>{event.eventName}</h3>
-                  <div className="summary">{event.Summary}</div>
-                  {event.description}
-                </div>
+                    <h3>{event.eventName}</h3>
+                    <div className="summary">{event.Summary}</div>
+                    <textarea
+                      name="description"
+                      tabIndex="5"
+                      required
+                      style={{
+                        border: 'none',
+                        resize: 'none',
+                        outline: 'none',
+                        backgroundColor: 'transparent',
+                        width: '250%',
+                        fontFamily: 'inherit',
+                        fontSize: 'inherit',
+                        lineHeight: 'inherit',
+                        padding: '0',
+                        margin: '0',
+                        overflow: 'hidden',
+                      }}
+                      value={event.description}
+
+                    ></textarea>
+                  </div>
                 </div>
               </div>
 
@@ -95,18 +114,24 @@ function convertDate(date) {
                 </div>
                 <div className="offers"></div>
                 <div className="registration">
-               <button onClick={(e)=>{
-                e.preventDefault()
-                if(access){
-                  setopenWindow(true)
-                setopenTickets(true)
-                setSelectedEventId(event._id)
-                }
-                else{
-                  navigate('/login')
-                }
-             
-               }}>Book Now</button>
+                    {
+                      event.bookedUsers.length < event.attendeesLimit ? (
+                        <button onClick={(e)=>{
+                          e.preventDefault()
+                          if(access){
+                            setopenWindow(true)
+                          setopenTickets(true)
+                          setSelectedEventId(event._id)
+                          }
+                          else{
+                            navigate('/login')
+                          }
+                       
+                         }}>Book Now</button>
+                      ):(
+                        <button>Ticket not Avilable</button>
+                      )
+                    }
                   
                 </div>
               </div>
@@ -136,7 +161,7 @@ function convertDate(date) {
                     <FontAwesomeIcon icon={faCircleXmark} className="rClose2" onClick={() =>
                                                                        setopenWindow(false)
                                                                        } />
-                    <Checkout selectedEventId={selectedEventId} setopenWindow={setopenWindow}/>
+                    <Checkout refetchData={refetchData} selectedEventId={selectedEventId} setopenWindow={setopenWindow}/>
                   </div>
                 )
               }

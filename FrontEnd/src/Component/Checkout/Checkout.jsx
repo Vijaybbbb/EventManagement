@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { axiosRequest } from '../../../Utils/axiosRequest';
 import useRazorpay from "react-razorpay";
 
-const Checkout = ({selectedEventId,setopenWindow}) => {
+const Checkout = ({selectedEventId,setopenWindow,refetchData}) => {
 
        const {data} =  useFetch(`event/${selectedEventId}`)
        //console.log(data);
@@ -31,16 +31,18 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
 
 
 
-       function verifyPaymentSucess(response,ticketId){
+       function verifyPaymentSucess(response,ticketId,eventId){
 
         axiosRequest.post(`user/verifyPayment`,
         { response: response,
           ticketId: ticketId ,
           userId:userId,
+          eventId,eventId
        
          }, { withCredentials: true }).then((res) => {
-           console.log(res);
-  
+         
+            refetchData()
+            
        }).catch((err) => {
             console.log(err);
        })
@@ -60,13 +62,13 @@ const Checkout = ({selectedEventId,setopenWindow}) => {
                       key: "rzp_test_9QHYCj7luW7qlw", // Enter the Key ID generated from the Dashboard
                       amount:res.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                       currency: "INR",
-                      name: "GetYouRoom",
+                      name: "Eventszo",
                       description: "Test Transaction",
                       image: "https://example.com/your_logo",
                       order_id: res.data.order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
                       handler: function (response) {
                         //success transaction
-                        verifyPaymentSucess(response,res.data.lastDataId)
+                        verifyPaymentSucess(response,res.data.lastDataId,res.data.eventId)
                       },
                       prefill: {
                         name: "vijay ram ",
