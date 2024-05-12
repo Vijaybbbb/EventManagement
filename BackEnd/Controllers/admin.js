@@ -15,7 +15,7 @@ const getAllTickets = async (req,res,next) =>{
 }
 
 const deleteEvent = async (req,res,next) =>{
-       console.log(req.body.event);
+       
               try {
                       await Event.findByIdAndDelete(req.body.event)
                      res.status(200).json("deleted")
@@ -64,7 +64,7 @@ const updateEvent = async (req,res,next) =>{
 
 const adminLogin = async (req,res,next) =>{
        try {
-              console.log('rkeghei');
+             
               const {email,password} = req.body
               const user = await User.findOne({email:email})
               if(!user){

@@ -2,7 +2,7 @@ const express  = require('express')
 const app = express()
 const dotenv = require('dotenv')
 dotenv.config()
-
+const cron = require('node-cron');
 const adminRouter  = require('./Routes/admin.js')
 const userRouter  = require('./Routes/user.js')    
 const eventRouter  = require('./Routes/event.js')
@@ -14,6 +14,7 @@ const cors = require('cors')
 const session = require('express-session')
 const {connect}  = require('./Utils/databaseConnection.js')
 const { verifyTocken } = require('./Utils/verifyTocken.js') 
+const { sendUpcomingEventsEmail } = require('./Utils/EmailNotfication.js')
 connect();     
 
 app.use(session({
@@ -72,3 +73,13 @@ app.post('/clearCookie', (req, res) => {
 app.get('/',verifyTocken,(req,res)=>{
       res.status(200).json({message:'success'})
 }).listen(3000)
+
+
+
+const millisecondsInDay = 24 * 60 * 60 * 1000; 
+
+// Set interval to send email once a day
+setInterval(async () => {
+    console.log('email sent');
+    await sendUpcomingEventsEmail(); // Assuming sendUpcomingEventsEmail is an async function
+}, millisecondsInDay);

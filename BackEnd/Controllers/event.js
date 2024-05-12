@@ -43,7 +43,7 @@ const allEvents  = async(req,res,next) => {
           }
 
         let data = await Event.find(query).sort(sortOption);
-        console.log(data);
+
         res.status(200).json(data);
 
        } catch (error) {
