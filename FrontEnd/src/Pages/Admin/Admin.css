@@ -110,3 +110,11 @@
       cursor: pointer;
   }
   
+
+  .toolbar{
+    color: red;
+    margin-left: 979px;
+    text-transform: capitalize;
+    margin-top: 30px;
+    cursor: pointer;
+  }

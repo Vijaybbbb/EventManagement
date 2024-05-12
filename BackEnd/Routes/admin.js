@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllTickets, deleteEvent, getEvent, updateEvent } = require('../Controllers/admin')
+const { getAllTickets, deleteEvent, getEvent, updateEvent, adminLogin } = require('../Controllers/admin')
 const router = express.Router()
 
 
@@ -16,6 +16,8 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage:storage})
+
+router.post('/adminLogin',adminLogin)
 
 router.get('/allTickets',getAllTickets)
 

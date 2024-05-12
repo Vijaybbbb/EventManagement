@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage'
 
 import userDetails from './loginSlice.js'
 import ticketDetails from './orderSlice.js'
+import adminDetails from './adminLoginSlice.js'
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
        userDetails:userDetails,
        ticketDetails:ticketDetails,
+       adminDetails:adminDetails
 })
 
 const persistedReducer = persistReducer(persistConfig,rootReducer)

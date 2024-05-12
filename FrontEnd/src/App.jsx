@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home'
 import Signup from './Pages/Signup/Signup'
 import Admin from './Pages/Admin/Admin'
 import MyTickets from './Pages/MyTickets/MyTickets'
+import AdminLogin from './Pages/Admin/AdminLogin/AdminLogin'
 
 
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path:"/myTickets",
     element:<MyTickets/>
+  },
+  {
+    path:"/adminLogin",
+    element:<AdminLogin/>
   },
 
 ])
