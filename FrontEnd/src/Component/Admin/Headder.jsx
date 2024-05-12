@@ -5,7 +5,7 @@ const Headder = () => {
 
       <header className="admin__header">
         <a href="#" className="logo">
-          <h1>GridAdmin</h1>
+          <h1>Eventszo Admin</h1>
         </a>
         <div className="toolbar">
         </div>

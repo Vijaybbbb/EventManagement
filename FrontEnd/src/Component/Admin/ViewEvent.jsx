@@ -9,7 +9,7 @@ import 'react-date-range/dist/theme/default.css';
 import {axiosRequest} from '../../../Utils/axiosRequest'
 import useFetch from '../../Hooks/fetchData'
 
-const ViewEvent = ({eventId}) => {
+const ViewEvent = ({eventId,handleGoBack}) => {
 
 
        const { data, error, loading, refetchData } = useFetch(`/admin/getEvent?id=${eventId}`)
@@ -53,7 +53,8 @@ const ViewEvent = ({eventId}) => {
                                    'Content-Type': 'multipart/form-data'
                             }
                      }).then((res) => {
-                            console.log(res);         
+                           
+                            handleGoBack();         
 
                      }).catch((error) => {
                             console.log(error);
@@ -211,7 +212,7 @@ const ViewEvent = ({eventId}) => {
                                                                data-submit="...Sending"
                                                                onClick={handleCreate}
                                                         >
-                                                               Create Event
+                                                               Update Event Informations
                                                         </button><br /><br /><br />
 
                                                  </fieldset>

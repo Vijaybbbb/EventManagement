@@ -7,7 +7,7 @@ import { format } from 'date-fns'
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import {axiosRequest} from '../../../Utils/axiosRequest'
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const CreateEvent = () => {
 
@@ -53,9 +53,18 @@ const CreateEvent = () => {
                                    'Content-Type': 'multipart/form-data'
                             }
                      }).then((res) => {
-                            console.log(res);
-                            setShow(false)
-
+                            toast.success("Event Created successfully!")
+                            setHotelData({
+                                   eventName: '',
+                                   eventType: '',
+                                   time: '',
+                                   location: '',
+                                   date: new Date(),
+                                   organizer: '',
+                                   attendeesLimit: '',
+                                   description: '' // Add more fields if necessary
+                               });
+                            
                      }).catch((error) => {
                             console.log(error);
                      })
@@ -74,13 +83,14 @@ const CreateEvent = () => {
 
        return (
               <div>
+                     <ToastContainer />
                      <main className="admin__main">
 
                             <div className='createHotelPage'>
 
                                    <div className="container">
                                           <form id="contact">
-                                                 <h3>Event information</h3><br />
+                                                 <h3>Enter Event informations</h3><br />
                                                  <label htmlFor="" style={{ marginBottom: '10px' }}>Event Name</label>
                                                  <fieldset>
                                                         <input
@@ -89,13 +99,14 @@ const CreateEvent = () => {
                                                                tabIndex="1"
                                                                required
                                                                autoFocus
-
+                                                               value={hotelData?.eventName || ''}
                                                                onChange={getValue}
                                                         />
                                                  </fieldset>
                                                  <label htmlFor="" style={{ marginBottom: '10px' }}>Event Type</label>
                                                  <fieldset>
                                                         <select
+                                                               value={hotelData?.eventType || ''}
                                                                name='eventType'
                                                                tabIndex="1"
                                                                required
@@ -123,6 +134,7 @@ const CreateEvent = () => {
                                                  <label htmlFor="">Time</label>
                                                  <fieldset>
                                                         <input
+                                                               value={hotelData?.time || ''}
                                                                name='time'
                                                                type="tel"
                                                                tabIndex="3"
@@ -135,6 +147,8 @@ const CreateEvent = () => {
                                                  <label htmlFor="">location</label>
                                                  <fieldset>
                                                         <input
+                                                               value={hotelData?.location || ''}
+
                                                                name='location'
                                                                type="url"
                                                                tabIndex="4"
@@ -147,6 +161,8 @@ const CreateEvent = () => {
                                                  <label htmlFor="">organizer</label>
                                                  <fieldset>
                                                         <input
+                                                               value={hotelData?.organizer || ''}
+
                                                                name='organizer'
                                                                type="url"
                                                                tabIndex="4"
@@ -158,6 +174,8 @@ const CreateEvent = () => {
                                                  <label htmlFor="">attendees Limit</label>
                                                  <fieldset>
                                                         <input
+                                                               value={hotelData?.attendeesLimit || ''}
+
                                                                name='attendeesLimit'
                                                                type="tel"
                                                                tabIndex="3"
@@ -169,6 +187,8 @@ const CreateEvent = () => {
                                                  <label htmlFor="">Description</label>
                                                  <fieldset>
                                                         <textarea
+                                                               value={hotelData?.description || ''}
+
                                                                name='description'
                                                                tabIndex="5"
                                                                required

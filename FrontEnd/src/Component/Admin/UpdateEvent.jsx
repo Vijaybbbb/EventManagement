@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useFetch from '../../Hooks/fetchData'
 import '../Admin/css/UpdateEvent.css'
 import ViewEvent from './ViewEvent'
@@ -10,6 +10,9 @@ const UpdateEvent = () => {
   const [page, setPage] = useState(1)
   const [viewEvent, setViewEvent] = useState(false)
   const [eventId, setEventId] = useState()
+
+  
+
 
   const TableRow = ({ children }) => {
     return <div className="table__row">{children}</div>;
@@ -31,7 +34,7 @@ const UpdateEvent = () => {
 
 
   function handleGoBack() {
-    setViewHotel(false)
+    setViewEvent(false)
     refetchData()
   }
 
@@ -50,17 +53,23 @@ const UpdateEvent = () => {
       console.log(err);
     })
   }
-
+  function convertDate(date) {
+    const newDate = new Date(date);
+    // Format the date with month name and no time
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const formattedDate = newDate.toLocaleString('en-US', options);
+    return formattedDate;
+  }
   return (
     <div>
       {
         viewEvent ? (
                 <div>
-                   <ViewEvent  eventId={eventId}  />
+                   <ViewEvent  eventId={eventId} handleGoBack={handleGoBack}  />
                 </div>
         ):(
           <main className="admin__main">
-        <h2>Upadte</h2>
+    
         <div className='allHotelsTable'>
           <div className="table">
             <div className="table__body" >
@@ -78,7 +87,7 @@ const UpdateEvent = () => {
                     <TableCell>
                       <h3 className="table__crypto-name">{event?.eventName}</h3>
                     </TableCell>
-                    <TableCell><input type="text" value={event?.date} className='detailsshowinput' readOnly /></TableCell>
+                    <TableCell><input type="text" value={convertDate(event?.date)} className='detailsshowinput' readOnly /></TableCell>
 
                     <TableCell><input type="text" value={event?._id} className='detailsshowinput' readOnly /></TableCell>
                     <TableCell></TableCell>

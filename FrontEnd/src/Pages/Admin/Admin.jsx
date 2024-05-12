@@ -35,14 +35,7 @@ const Admin = () => {
               
               }}>Update Event</a>
           </li>
-          <li className="menu__item">
-            <a className="menu__link" href="#" onClick={()=>{
-            setShowCreate(false)
-            setShowUpdate(false)
-            setShowDelete(true)
-              
-              }}>Delete Event</a>
-          </li>
+          
           
         </ul>
       </nav>
