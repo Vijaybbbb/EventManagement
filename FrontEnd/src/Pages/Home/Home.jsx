@@ -5,7 +5,7 @@ import Navbar from '../../Component/Navbar/Navbar'
 import Banner from '../../Component/Banner/Banner'
 import { useSelector } from 'react-redux'
 import Notify from '../../Component/Notify/Notify'
-
+import img from '../../assets/images/us.png'
 
 
 const Home = () => {
@@ -33,7 +33,7 @@ useEffect(()=>{
             <section id="banner-wrapper">
                 <div id="owl-carousel" className="owl-carousel owl-theme">
                     <div className="item">
-                        <img src="https://imgur.com/96OnkX7.png" alt=" pics " />
+                        <img src={img}/>
                     </div>
                     
                 </div>

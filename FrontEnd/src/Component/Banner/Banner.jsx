@@ -56,7 +56,7 @@ function onPaymentSucces(){
     <ToastContainer />
         <div className="arlo">
         <div className="arlo-page-title arlo-font-primary">
-          <h2>Demos - Upcoming Events - List 1</h2>
+          <h2>Upcoming Events - List 1</h2>
         </div>
         <div id="upcoming-events-list1">
           {/* Render list items */}
