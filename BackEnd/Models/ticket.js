@@ -19,6 +19,14 @@ const ticketSchema = new Schema({
         type: String,
         required: true
     },
+    des: {
+        type: String,
+        required: true
+    },
+    organizer: {
+        type: String,
+        required: true
+    },
     ticketType: {
         type: String,
         required: true

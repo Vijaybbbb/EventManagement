@@ -78,7 +78,7 @@ const MyTickets = () => {
                                                                                   <div className="mobile-ticket__event-info">
                                                                                          <span className="event-info__name">{ticket.organizer}</span>
                                                                                          <span className="event-info__time">{convertDate(ticket.expires)} </span>
-                                                                                         <span className="event-info__venue"><b></b>{ticket.des}</span>
+                                                                                        <textarea name="" id="" style={{color:'black',border:'none',width:'300px',textDecoration:'none'}}>{ticket.des}</textarea>
                                                                                   </div>
                                                                            </div>
                                                                     </div>

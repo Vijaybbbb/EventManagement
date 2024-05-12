@@ -15,13 +15,13 @@ const transport = nodeMailer.createTransport({
      });
 
 //send otp to email
- const sendToEmail = (email) =>{
+ const sendToEmail = (email,ticket) =>{
        return new Promise((resolve,reject)=>{
               const mailOptions = {
                      from: 'eventszoevents@gmail.com',
                      to: email,
                      subject: "Confermation Email",
-                     html:htmlContent
+                     html:htmlContent(email,ticket)
                    };
               transport.sendMail(mailOptions, (err) => {
                      if (err) {

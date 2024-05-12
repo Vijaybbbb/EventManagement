@@ -137,6 +137,7 @@ const verifyPayment = async (req, res, next) => {
        const signature = response.razorpay_signature;
 
        const user  = await User.findById(userId)
+       const ticket  = await User.findById(ticketId)
 
 
 
@@ -151,7 +152,7 @@ const verifyPayment = async (req, res, next) => {
                      console.log("payment successs",);
 
                      PaymentStatus(ticketId, userId).then((data)=>{
-                          sendToEmail(user.email)
+                          sendToEmail(user.email,ticket)
                      }).catch(err=>console.log(err))
 
                      res.status(200).json({ message: 'order placed', response: response })
