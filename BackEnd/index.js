@@ -28,7 +28,7 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({
-        origin: 'http://localhost:5173',
+        origin: 'https://6641bb0398c3226e9555cc11--leafy-manatee-35df3e.netlify.app/',
         credentials: true 
         }))
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 //axios configuration
 
-const sampleUrl="http://localhost:3000"
+const sampleUrl="https://eventmanagement-lquh.onrender.com"
 
 export const axiosRequest=axios.create({
        baseURL:sampleUrl,  
