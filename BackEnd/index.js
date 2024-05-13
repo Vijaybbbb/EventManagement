@@ -28,7 +28,7 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({
-        origin: 'https://stalwart-daifuku-f33a84.netlify.app',
+        origin: 'https://dynamic-mooncake-1defed.netlify.app',
         credentials: true 
         }))
 

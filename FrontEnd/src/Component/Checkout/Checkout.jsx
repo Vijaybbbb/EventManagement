@@ -119,10 +119,10 @@ const Checkout = ({selectedEventId,setopenWindow,refetchData,onPaymentSucces}) =
                         <table className='order-table'>   
                             <tbody>
                                 <tr>
-                                    <td><img src={`../src/assets/uploads/${data.images}`} className='full-width' alt='Nike Shoes' /></td>
+                                    <td><img src={`../src/assets/uploads/${data.images}`} className='full-width' alt='Image' /></td>
                                     <td>
                                         <br /><span className='thin'>{ticket?.ticket?.type}</span>
-                                        <br />{data?.eventName}<br /><span className='thin small'>Color: Grey/Orange, Size: 10.5<br /><br /></span>
+                                        <br />{data?.eventName}<br /><span className='thin small'>Free Cancelation<br /><br /></span>
                                     </td>
                                 </tr>
                                 <tr>
