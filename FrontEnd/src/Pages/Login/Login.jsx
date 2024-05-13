@@ -73,7 +73,7 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
                             <input type="password" required name="password" id="password" className="input-field" placeholder="Password"   onChange={getValue}/>
                         </div>
                         <div className="input-control">
-                            <a href="#" className="text text-links" onClick={()=>{navigate('/enterEmail')}}>Forgot Password</a>
+                            <a href="#" className="text text-links" onClick={()=>{navigate('/adminLogin')}}>Admin Login</a>
                             <button type="submit" name="submit" id="input-submit"> Log in</button>
                         </div>
                     </form>
