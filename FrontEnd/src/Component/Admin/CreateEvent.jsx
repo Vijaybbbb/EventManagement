@@ -114,11 +114,11 @@ const CreateEvent = () => {
                                                                onChange={getValue}
                                                         >
                                                                <option value="">Select Event Type</option>
-                                                               <option value="Hotel">Science</option>
-                                                               <option value="Apartment">Technology</option>
-                                                               <option value="Resort">Money & Economy</option>
-                                                               <option value="Villa">Foods exihibtion</option>
-                                                               <option value="Cabin">Education</option>
+                                                               <option value="Science">Science</option>
+                                                               <option value="Technology">Technology</option>
+                                                               <option value="Money">Money & Economy</option>
+                                                               <option value="Foods">Foods exihibtion</option>
+                                                               <option value="Education">Education</option>
 
                                                                {/* Add more options as needed */}
                                                         </select>

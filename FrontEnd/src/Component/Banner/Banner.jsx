@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router'
 import { ToastContainer, toast } from 'react-toastify';
 
 const Banner = ({access,searchText,sortOption,filterOption}) => {
-  console.log(sortOption);
+console.log(sortOption,filterOption);
 
 const {data,refetchData} =  useFetch(`event/allEvents?searchText=${searchText || ''}&sortOption=${sortOption || ''}&filterOption=${filterOption || ''}`)
 const [openWindow,setopenWindow]   = useState(false)
@@ -62,7 +62,7 @@ function onPaymentSucces(){
           {/* Render list items */}
           {data && data.slice((page - 1) * 4, page * 4).map(event => (
             <div key={event.id} className="upcoming-event">
-              <div className="left">
+              <div className="left" style={{minWidth:'240px'}}>
                 <div className="date">{convertDate(event.date)}</div>
                 <div className="time">
                 {event.time}
@@ -82,7 +82,7 @@ function onPaymentSucces(){
                 </div>
                 <div>
                     <h3>{event.eventName}</h3>
-                    <div className="summary">{event.Summary}</div>
+                    <div className="summary"></div>
                     <textarea
                       name="description"
                       tabIndex="5"
@@ -92,7 +92,7 @@ function onPaymentSucces(){
                         resize: 'none',
                         outline: 'none',
                         backgroundColor: 'transparent',
-                        width: '250%',
+                        width: '200%',
                         fontFamily: 'inherit',
                         fontSize: 'inherit',
                         lineHeight: 'inherit',
