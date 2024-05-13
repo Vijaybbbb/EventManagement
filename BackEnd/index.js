@@ -23,7 +23,7 @@ app.use(session({
    
 
 //middlewares 
-app.use(express.json())
+app.use(express.json()) 
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
