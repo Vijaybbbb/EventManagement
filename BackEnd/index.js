@@ -28,7 +28,7 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({
-        origin: 'https://6641c42d82f5fe8036049de2--stalwart-daifuku-f33a84.netlify.app',
+        origin: 'https://stalwart-daifuku-f33a84.netlify.app/',
         credentials: true 
         }))
 
