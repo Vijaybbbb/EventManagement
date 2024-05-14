@@ -39,7 +39,7 @@ app.use('/admin',adminRouter)
 
 
 
-/////app.use('/',verifyTocken)
+app.use('/',verifyTocken)
 
 //error handling middleware
 app.use((err,req,res,next)=>{
