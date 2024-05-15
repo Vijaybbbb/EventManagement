@@ -2,10 +2,6 @@ const express = require('express')
 const { createEvent, allEvents, singleEvent } = require('../Controllers/event')
 const router = express.Router()
 
-
-
-
-
 const multer  = require('multer')
 const storage = multer.diskStorage({
 

@@ -32,8 +32,8 @@ useEffect(()=>{
              <Navbar access={access} setSearchText={setSearchText} setSortOption={setSortOption} setFilterOption={setFilterOption}/>
             <section id="banner-wrapper">
                 <div id="owl-carousel" className="owl-carousel owl-theme">
-                    <div className="item">
                         <img src={img}/>
+                    <div className="item">
                     </div>
                     
                 </div>
